@@ -1,0 +1,18 @@
+{
+  "ie": {
+    "body": [
+      "if err != nil {",
+      "\t${1:panic(err)}",
+      "}"
+    ],
+    "prefix": "ie"
+  },
+  "iee": {
+    "body": [
+      "if err := ${1:}; err != nil {",
+      "\t${2:panic(err)}",
+      "}"
+    ],
+    "prefix": "iee"
+  }
+}

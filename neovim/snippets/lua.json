@@ -1,0 +1,14 @@
+{
+  "fe": {
+    "body": [
+      "function()",
+      "  ${1:}",
+      "end"
+    ],
+    "prefix": "fe"
+  },
+  "ff": {
+    "body": "function() ${1:} end",
+    "prefix": "ff"
+  }
+}
