@@ -43,6 +43,10 @@ export FZF_DEFAULT_OPTS="--bind 'tab:accept'"
 zstyle ':fzf-tab:*' fzf-bindings 'tab:accept'
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+if [[ $(uname) == "Linux" ]]; then
+    export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
+fi
+
 
 if [[ $(uname) == "Darwin" ]]; then
     if [[ ! -d /opt/homebrew ]]; then
