@@ -75,9 +75,9 @@ return {
           Snacks.picker.actions.close(picker)
           vim.schedule(function()
             if item.dir then
-              vim.cmd("Oil " .. item.file)
+              vim.cmd("Oil " .. item.file:gsub(" ", "\\ "))
             else
-              vim.cmd("Oil " .. item._path)
+              vim.cmd("Oil " .. item._path:gsub(" ", "\\ "))
               vim.cmd("Oil")
             end
           end)
