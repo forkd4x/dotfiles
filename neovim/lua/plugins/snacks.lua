@@ -126,7 +126,7 @@ return {
     { "<leader>r", function() Snacks.picker.resume() end, desc = "Snacks Resume" },
     { "<leader>tT", function() Snacks.picker.todo_comments() end, desc = "Todo Picker" },
     { "<leader>z", function() Snacks.picker.zoxide() end, desc = "Zoxide Picker" },
-    { "z=", function() Snacks.picker.spelling({ layout = { preview = false } }) end, "Spelling Picker" },
+    { "z=", function() Snacks.picker.spelling({ layout = { preset = "custom", preview = false } }) end, "Spelling Picker" },
     { "<leader>F", function() Snacks.zen.zoom() end, desc = "Zoom Window" },
   }
 }
