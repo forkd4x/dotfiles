@@ -17,6 +17,6 @@ return {
 		{ "=P", mode = {"n", "x"}, [[<Plug>(YankyPutBeforeFilter)]] },
 		{ "[p", [[<Plug>(YankyCycleForward)]], desc = "Previous Yank" },
 		{ "]p", [[<Plug>(YankyCycleBackward)]], desc = "Next Yank" },
-		{ "<leader>y", [[<cmd>YankRingHistory<cr>]], desc = "Yanky History" },
+		{ "<leader>y", [[<cmd>YankyRingHistory<cr>]], desc = "Yanky History" },
 	},
 }
