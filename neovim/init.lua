@@ -24,24 +24,6 @@ vim.o.title = true
 vim.o.titlestring = "(%{hostname()}) %{fnamemodify(getcwd(), ':t')}"
 vim.o.wrap = false
 
--- Copy to system clipboard with OSC52 without requiring read-clipboard
-local function paste()
-  return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
-end
-vim.g.clipboard = {
-  name = "OSC 52",
-  copy = {
-    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-  },
-  paste = {
-    ["+"] = paste,
-    ["*"] = paste,
-  },
-}
-vim.keymap.set({ "n", "x" }, "<A-y>", [["+y]])
-vim.keymap.set("n", "<A-y><A-y>", [[<A-y>il]], { remap = true })
-
 -- Plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
