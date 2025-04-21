@@ -128,7 +128,7 @@ return {
 			n_lines = 1000,
 		})
 		vim.keymap.set("x", "S", [[:<C-u>lua MiniSurround.add("visual")<CR>]], { silent = true })
-		vim.keymap.set("n", "gss", "gs_", { remap = true })
+		vim.keymap.set("n", "gss", "gs_", { remap = true, desc = "Surround line" })
 
 	end,
 }
