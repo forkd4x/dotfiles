@@ -79,12 +79,9 @@ if [[ $(uname) == "Darwin" ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
 elif [[ $(uname) == "Linux" ]]; then
+    zinit ice from"gh-r" as"program" pick"fd*/fd"; zinit light sharkdp/fd
     zinit ice from"gh-r" as"program"; zinit light junegunn/fzf
-    if [[ $(ldd --version | grep -Eo '(2\.[0-9]+)$') > "2.30" ]]; then
-        zinit ice from"gh-r" as"program" pick"nvim*/bin/nvim"; zinit light neovim/neovim
-    else
-        zinit ice from"gh-r" as"program" pick"nvim*/bin/nvim"; zinit light neovim/neovim-releases
-    fi
+    zinit ice from"gh-r" as"program" mv"nvim* -> nvim"; zinit light neovim/neovim
     zinit ice from"gh-r" as"program" pick"ripgrep*/rg"; zinit light BurntSushi/ripgrep
     zinit ice from"gh-r" as"program"; zinit light ajeetdsouza/zoxide
     if [[ ! -d ~/.dotfiles ]]; then

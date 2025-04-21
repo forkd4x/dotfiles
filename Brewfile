@@ -1,3 +1,4 @@
+brew "fd"
 brew "fzf"
 brew "go"
 brew "imagemagick"
