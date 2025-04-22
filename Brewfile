@@ -6,6 +6,7 @@ brew "neovim"
 brew "npm"
 brew "python"
 brew "ripgrep"
+brew "uv"
 brew "zoxide"
 
 # Casks
