@@ -85,7 +85,7 @@ if [[ $(uname) == "Darwin" ]]; then
 elif [[ $(uname) == "Linux" ]]; then
     zinit ice from"gh-r" as"program" pick"fd*/fd"; zinit light sharkdp/fd
     zinit ice from"gh-r" as"program"; zinit light junegunn/fzf
-    zinit ice from"gh-r" as"program" mv"nvim* -> nvim"; zinit light neovim/neovim
+    zinit ice from"gh-r" as"program" mv"nvim* -> nvim" pick"nvim"; zinit light neovim/neovim
     zinit ice from"gh-r" as"program" pick"ripgrep*/rg"; zinit light BurntSushi/ripgrep
     zinit ice from"gh-r" as"program"; zinit light ajeetdsouza/zoxide
     if [[ ! -d ~/.dotfiles ]]; then
