@@ -4,7 +4,11 @@ return {
 	event = "InsertEnter",
 	config = function()
 		require("blink-cmp").setup({
-			keymap = { preset = "super-tab" },
+			keymap = {
+				preset = "super-tab",
+				["<C-k>"] = {},
+				['<C-s>'] = { 'show_signature', 'hide_signature', 'fallback' },
+			},
 			sources = {
 				providers = {
 					buffer = { score_offset = -7 },
