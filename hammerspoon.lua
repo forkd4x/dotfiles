@@ -21,6 +21,7 @@ end
 hs.loadSpoon("ControlEscape"):start()
 
 -- Move and resize windows
+hs.window.animationDuration = 0.1
 local mods = { "ctrl", "cmd" }
 ---@diagnostic disable-next-line: undefined-field
 hs.loadSpoon("Rectangle"):bindHotkeys({
@@ -30,8 +31,8 @@ hs.loadSpoon("Rectangle"):bindHotkeys({
   maximize    = { mods, "f" },  almost_max  = { mods, "g" },
   center      = { mods, "m" },  smaller     = { mods, "-" },  larger       = { mods, "=" },
   focus_left  = { mods, "h" },  focus_right = { mods, "l" },
-  focus_up    = { mods, "k" },  focus_down  = { mods, "j" },  focus_under = { mods, "i" },
-})
+  focus_up    = { mods, "k" },  focus_down  = { mods, "j" },  focus_under =  { mods, "i" },
+}):addGap(5)
 
 -- Switch apps using the right command key
 ---@diagnostic disable-next-line: undefined-field
