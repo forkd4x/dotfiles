@@ -54,6 +54,10 @@ vim.keymap.set("n", "gp", [[ "`[" . getregtype() . "`]" ]], {
   expr = true, desc = "Select last paste"
 })
 
+-- Move to first character and end of lines with homerow
+vim.keymap.set({ "n", "o", "x" }, "H", "_")
+vim.keymap.set({ "n", "o", "x" }, "L", "$")
+
 -- Fix j/k movements in wrapped lines
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
