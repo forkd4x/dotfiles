@@ -13,7 +13,7 @@ alias ll="ls -al"
 alias lt="ll -t | less -FR"
 alias uuid="uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | tee >(pbcopy)"
 function mkcd() { mkdir -p "$@" && cd "$@"; }
-function s() { kitten ssh -t $@ "zsh -l" }
+function s() { kitten ssh --kitten login_shell=zsh $@ }
 function v() {
     nvim $1
     if [[ -f /tmp/.oil.nvim.cd ]]; then
