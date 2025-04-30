@@ -1,4 +1,4 @@
 return {
-	"kwkarlwang/bufresize.nvim",
-	opts = {},
+  "kwkarlwang/bufresize.nvim",
+  opts = {},
 }

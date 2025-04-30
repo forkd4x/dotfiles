@@ -1,15 +1,15 @@
 return {
   {
-  	"fladson/vim-kitty",
-  	ft = "kitty",
+    "fladson/vim-kitty",
+    ft = "kitty",
   },
 
   {
-		"mrjones2014/smart-splits.nvim",
-		build = "./kitty/install-kittens.bash",
+    "mrjones2014/smart-splits.nvim",
+    build = "./kitty/install-kittens.bash",
     config = function()
       require("smart-splits").setup({
-      	at_edge = "stop",
+        at_edge = "stop",
       })
       local modes = { "n", "i", "x", "c" }
       vim.keymap.set(modes, "<C-h>", require("smart-splits").move_cursor_left)
@@ -24,8 +24,8 @@ return {
   },
 
   {
-		"mikesmithgh/kitty-scrollback.nvim",
-		config = true,
+    "mikesmithgh/kitty-scrollback.nvim",
+    config = true,
     cmd = { "KittyScrollbackGenerateKittens", "KittyScrollbackCheckHealth" },
     event = { "User KittyScrollbackLaunch" },
   },
