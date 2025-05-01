@@ -29,10 +29,10 @@ hs.loadSpoon("Rectangle"):bindHotkeys({
   left_half   = { mods, "a" },  center_half = { mods, "s" },  right_half   = { mods, "d" },
   bottom_left = { mods, "z" },  bottom_half = { mods, "x" },  bottom_right = { mods, "c" },
   maximize    = { mods, "f" },  almost_max  = { mods, "g" },
-  center      = { mods, "m" },  smaller     = { mods, "-" },  larger       = { mods, "=" },
+  center      = { mods, "0" },  smaller     = { mods, "-" },  larger       = { mods, "=" },
   focus_left  = { mods, "h" },  focus_right = { mods, "l" },
   focus_up    = { mods, "k" },  focus_down  = { mods, "j" },  focus_under =  { mods, "i" },
-}):addGap(5)
+}):addGap(7)
 
 -- Switch apps using the right command key
 ---@diagnostic disable-next-line: undefined-field
