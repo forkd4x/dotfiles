@@ -3,7 +3,6 @@ return {
   config = function()
     ---@diagnostic disable-next-line: missing-fields
     require("trouble").setup({
-      auto_jump = true,
       focus = true,
       keys = { ["<tab>"] = "fold_toggle" },
     })

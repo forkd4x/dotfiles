@@ -8,6 +8,6 @@ return {
     vim.keymap.set("n", "]t", require("todo-comments").jump_next)
   end,
   keys = {
-    { "<leader>tt", [[<cmd>TodoTrouble<cr>]], desc = "Todo Trouble" },
+    { "<leader>tt", [[<cmd>TodoTrouble toggle<cr>]], desc = "Todo Trouble" },
   },
 }
