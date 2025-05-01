@@ -80,4 +80,4 @@ end, { desc = "Send to Terminal" })
 
 -- Exit quickly without prompts
 vim.keymap.set({ "n", "x" }, "Q", [[<cmd>qa!<cr>]]) -- Without saving
-vim.keymap.set({ "n", "x" }, "Z", [[<cmd>xa!<cr>]]) -- Save if modified
+vim.keymap.set({ "n", "x" }, "Z", [[<cmd>silent! xa!<cr><cmd>qa!<cr>]]) -- Save if modified
