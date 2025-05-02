@@ -1,4 +1,9 @@
-vim.keymap.set("n", "<leader>w", [[<cmd>silent! wa<cr>]], { desc = "Save files" })
+vim.keymap.set(
+  { "n", "x" },
+  "<leader>w",
+  [[<cmd>silent! wa<cr><cmd>redraw<cr>]],
+  { desc = "Save files" }
+)
 
 return {
   "lambdalisue/vim-suda",
