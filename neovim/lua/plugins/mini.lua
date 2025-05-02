@@ -18,6 +18,13 @@ return {
       n_lines = 1000,
     })
 
+    require("mini.bracketed").setup({
+      comment = { suffix = "" },    -- treesitter Class/conditional
+      file = { suffix = "" },       -- treesitter function
+      location = { suffix = "" },   -- treesitter loop
+      treesitter = { suffix = "" }, -- todo-comment
+    })
+
     require("mini.align").setup({
       mappings = { start = "" }
     })
