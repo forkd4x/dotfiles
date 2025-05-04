@@ -24,15 +24,19 @@ hs.loadSpoon("ControlEscape"):start()
 hs.window.animationDuration = 0.1
 local mods = { "ctrl", "cmd" }
 ---@diagnostic disable-next-line: undefined-field
-hs.loadSpoon("Rectangle"):bindHotkeys({
-  top_left    = { mods, "q" },  top_half    = { mods, "w" },  top_right    = { mods, "e" },
-  left_half   = { mods, "a" },  center_half = { mods, "s" },  right_half   = { mods, "d" },
-  bottom_left = { mods, "z" },  bottom_half = { mods, "x" },  bottom_right = { mods, "c" },
-  maximize    = { mods, "f" },  almost_max  = { mods, "g" },
-  center      = { mods, "0" },  smaller     = { mods, "-" },  larger       = { mods, "=" },
-  focus_left  = { mods, "h" },  focus_right = { mods, "l" },
-  focus_up    = { mods, "k" },  focus_down  = { mods, "j" },  focus_under =  { mods, "i" },
-}):addGap(7)
+local rectangle = hs.loadSpoon("Rectangle")
+if rectangle then
+  rectangle:bindHotkeys({
+    top_left    = { mods, "q" },  top_half    = { mods, "w" },  top_right    = { mods, "e" },
+    left_half   = { mods, "a" },  center_half = { mods, "s" },  right_half   = { mods, "d" },
+    bottom_left = { mods, "z" },  bottom_half = { mods, "x" },  bottom_right = { mods, "c" },
+    maximize    = { mods, "f" },  almost_max  = { mods, "g" },  max_height   = { mods, "9" },
+    center      = { mods, "0" },  smaller     = { mods, "-" },  larger       = { mods, "=" },
+    focus_left  = { mods, "h" },  focus_right = { mods, "l" },
+    focus_up    = { mods, "k" },  focus_down  = { mods, "j" },  focus_under =  { mods, "i" },
+  })
+  rectangle:config({ margins = 7 })
+end
 
 -- Switch apps using the right command key
 ---@diagnostic disable-next-line: undefined-field
