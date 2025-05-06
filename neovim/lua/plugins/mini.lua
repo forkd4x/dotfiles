@@ -89,20 +89,6 @@ return {
       require("mini.jump2d").start(require("mini.jump2d").builtin_opts.single_character)
     end)
 
-    require("mini.pairs").setup({
-      mappings = {
-        ['"'] = { neigh_pattern = "[^\\%a%d\"'][^\\%a%d\"']", register = { cr = true } },
-        ["'"] = { neigh_pattern = "[^\\%a%d\"'][^\\%a%d\"']", register = { cr = true } },
-      }
-    })
-    -- Fix <cr> between tags indenting properly
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = { "html", "phtml", "templ", "xml" },
-      callback = function()
-        vim.keymap.set("i", "<cr>", "<cr><esc>O", { buffer = vim.api.nvim_get_current_buf() })
-      end,
-    })
-
     local gen_hook = require("mini.splitjoin").gen_hook
     local curly = { brackets = { '%b{}' } }
     require("mini.splitjoin").setup({
