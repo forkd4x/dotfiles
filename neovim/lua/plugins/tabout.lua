@@ -1,5 +1,6 @@
 return {
   "abecodes/tabout.nvim",
+  event = "InsertCharPre",
   config = function()
     ---@diagnostic disable-next-line: missing-fields
     require("tabout").setup({})
