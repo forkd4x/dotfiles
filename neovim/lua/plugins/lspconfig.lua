@@ -13,7 +13,6 @@ return {
         "lua_ls",
         "pyright",
         "ruff",
-        "templ",
         "yamlls",
       },
       handlers = {
@@ -41,15 +40,22 @@ return {
         end,
       },
     })
+
     vim.keymap.set("n", "ge", vim.diagnostic.open_float, { desc = "Diagnostic Info" })
     vim.keymap.set("n", "grI", [[<cmd>silent check vim.lsp<cr>]], { desc = "Info" })
     vim.keymap.set("n", "grR", [[<cmd>LspRestart<cr>]], { desc = "Restart" })
+
+    vim.diagnostic.config({
+      severity_sort = true,
+      signs = false,
+      virtual_text = true,
+    })
     vim.keymap.set("n", "grv", function()
       vim.diagnostic.config({
         virtual_text = not vim.diagnostic.config().virtual_text,
       })
     end, { desc = "Toggle Virtual Text" })
-    vim.diagnostic.config({ severity_sort = true, signs = false })
+
     vim.keymap.set({ "n", "i" }, "<C-s>", function() vim.lsp.buf.signature_help() end)
   end
 }
