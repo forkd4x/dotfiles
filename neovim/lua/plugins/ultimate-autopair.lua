@@ -12,6 +12,11 @@ return {
       nocursormove = false,
     },
     space2 = { enable = true },
+    extensions = {
+      filetype = {
+        nft = { "snacks_picker_input" },
+      },
+    },
 
     -- Fix <cr> between tags indenting properly
     { ">", "<", newline = true, ft = { "html" } },
