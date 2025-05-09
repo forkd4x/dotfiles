@@ -5,13 +5,13 @@ return {
   config = function()
     require("mason-lspconfig").setup({
       ensure_installed = {
+        "basedpyright",
         "emmet_language_server",
         "golangci_lint_ls", -- +"golangci-lint"
         "gopls",
         "intelephense",
         "jsonls",
         "lua_ls",
-        "pyright",
         "ruff",
         "yamlls",
       },
@@ -24,9 +24,13 @@ return {
             filetypes = { "css", "html", "javascript", "phtml", "templ" }
           })
         end,
-        ["pyright"] = function()
-          require("lspconfig").pyright.setup({
-            settings = { python = { pythonPath = ".venv/bin/python" } },
+        ["lua_ls"] = function()
+          require("lspconfig").lua_ls.setup({
+            settings = {
+              Lua = {
+                hint = { enable = true },
+              },
+            },
           })
         end,
         ["ruff"] = function()
@@ -44,6 +48,9 @@ return {
     vim.keymap.set("n", "ge", vim.diagnostic.open_float, { desc = "Diagnostic Info" })
     vim.keymap.set("n", "grI", [[<cmd>silent check vim.lsp<cr>]], { desc = "Info" })
     vim.keymap.set("n", "grR", [[<cmd>LspRestart<cr>]], { desc = "Restart" })
+    vim.keymap.set("n", "grh", function()
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    end, { desc = "Toggle Inlay Hints" })
 
     vim.diagnostic.config({
       severity_sort = true,
