@@ -12,6 +12,10 @@ return {
     })
   end,
   keys = {
-    { "<leader>m", [[<cmd>MarkdownPreviewToggle<cr>]], desc = "Markdown Preview" },
+    {
+      "<leader>m",
+      [[:MarkdownPreviewToggle<cr>]] .. [[:redrawstatus<cr>]],
+      desc = "Markdown Preview",
+    },
   },
 }
