@@ -1,6 +1,6 @@
 return {
-  "williamboman/mason.nvim",
-  config = true,
+  "mason-org/mason.nvim",
+  opts = {},
   keys = {
     { "<leader>M", [[<cmd>Mason<cr>]], desc = "Mason" },
   },
