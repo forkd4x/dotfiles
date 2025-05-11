@@ -1,7 +1,7 @@
 return {
   "saghen/blink.cmp",
-  version = 'v0.*',
-  event = "InsertEnter",
+  version = '1.*',
+  event = { "InsertEnter", "CmdlineEnter" },
   config = function()
     require("blink-cmp").setup({
       keymap = {
@@ -9,11 +9,9 @@ return {
         ["<C-k>"] = {},
         ['<C-s>'] = { 'show_signature', 'hide_signature', 'fallback' },
       },
-      sources = {
-        providers = {
-          buffer = { score_offset = -7 },
-          lsp = { fallbacks = {} }, -- Always show buffer items
-        },
+      appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = "normal",
       },
       completion = {
         accept = {
@@ -23,11 +21,27 @@ return {
         },
         documentation = { auto_show = true },
       },
-      appearance = {
-        use_nvim_cmp_as_default = true,
-        nerd_font_variant = "normal",
-      },
       signature = { enabled = true },
+      sources = {
+        providers = {
+          buffer = { score_offset = -7 },
+          lsp = { fallbacks = {} }, -- Always show buffer items
+        },
+      },
+      cmdline = {
+        keymap = {
+          preset = "inherit",
+          ["<Tab>"] = { "show_and_insert", "select_and_accept" },
+        },
+      },
     })
+
+    vim.keymap.set("c", "<C-s>", function()
+      local cmd = vim.fn.getcmdline()
+      if cmd and cmd ~= "" then
+        vim.api.nvim_feedkeys("\27", "n", false) -- Exit command mode
+        vim.cmd("help " .. cmd)
+      end
+    end, { desc = "Show help for command" })
   end,
 }
