@@ -91,7 +91,25 @@ hs.loadSpoon("Rcmd"):bindHotkeys({
   r = "Microsoft Remote Desktop",
   s = "TablePlus",
   t = "Microsoft Teams",
-  w = "kitty",
+  w = function()
+    local front = hs.application.frontmostApplication()
+    if front:name() == "kitty" then front:hide(); return end
+    local app = hs.appfinder.appFromName("kitty")
+    if not app then
+      app = hs.application.open("kitty")
+      hs.timer.waitUntil(
+        function()
+          return hs.application.frontmostApplication():name() == "kitty"
+        end,
+        function()
+          if rectangle then rectangle:right_half() end
+        end,
+        0.1
+      )
+      return
+    end
+    app:activate()
+  end,
   x = "FileZilla",
   z = "Messages",
 }):start()
