@@ -19,6 +19,11 @@ return {
     },
 
     -- Fix <cr> between tags indenting properly
-    { ">", "<", newline = true, ft = { "html" } },
+    {
+      ">", "<",
+      disable_start = true,
+      newline = true,
+      ft = { "html", "htmldjango", "xml" },
+    },
   },
 }
