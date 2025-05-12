@@ -89,25 +89,6 @@ return {
       require("mini.jump2d").start(require("mini.jump2d").builtin_opts.single_character)
     end)
 
-    local gen_hook = require("mini.splitjoin").gen_hook
-    local curly = { brackets = { '%b{}' } }
-    require("mini.splitjoin").setup({
-      mappings = {
-        toggle = "<leader>j",
-      },
-      split    = {
-        hooks_post = {
-          gen_hook.add_trailing_separator(curly),
-        },
-      },
-      join     = {
-        hooks_post = {
-          gen_hook.del_trailing_separator(curly),
-          gen_hook.pad_brackets(curly),
-        },
-      },
-    })
-
     require("mini.surround").setup({
       mappings = {
         add = "gs",
