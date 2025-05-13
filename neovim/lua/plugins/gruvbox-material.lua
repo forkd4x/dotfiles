@@ -9,6 +9,7 @@ return {
     vim.g.gruvbox_material_better_performance = 1
     vim.api.nvim_create_autocmd("ColorScheme", {
       callback = function()
+        if vim.g.colors_name ~= "gruvbox-material" then return end
         vim.api.nvim_set_hl(0, "@function.builtin", { link = "YellowBold" })
         vim.api.nvim_set_hl(0, "@lsp.type.function.lua", {})
         vim.api.nvim_set_hl(0, "@lsp.type.property.lua", {})
