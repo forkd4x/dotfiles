@@ -10,7 +10,9 @@ unset zle_bracketed_paste
 
 alias ls="ls --color"
 alias ll="ls -al"
-alias lt="ll -t | less -FR"
+alias llt="ll -tr"
+alias lls="ll -Sr"
+alias ai="nvim -c 'PrtChat;only'"
 alias uuid="uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | tee >(pbcopy)"
 function mkcd() { mkdir -p "$@" && cd "$@"; }
 function s() { kitten ssh --kitten login_shell=zsh $@ }

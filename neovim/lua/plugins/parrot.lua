@@ -1,8 +1,6 @@
 return {
   "frankroeder/parrot.nvim",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-  },
+  dependencies = "nvim-lua/plenary.nvim",
   config = function()
     require("parrot").setup({
       chat_free_cursor = true,
@@ -28,8 +26,10 @@ return {
       end,
     })
   end,
+  cmd = { "PrtChatNew" },
   keys = {
     { "<leader>an", mode = { "n" }, [[:PrtChatNew<cr>]], desc = "New Chat" },
+    { "<leader>aN", mode = { "n" }, [[:PrtChatNew<cr>:only<cr>]], desc = "New Chat Only" },
     { "<leader>an", mode = { "x" }, [[:<C-u>'<,'>PrtChatNew<cr>]], desc = "New Chat" },
     { "<leader>av", mode = { "n" }, [[:PrtChatToggle<cr>]], desc = "Toggle Chat" },
     { "<leader>av", mode = { "x" }, [[:<C-u>'<,'>PrtChatToggle<cr>]], desc ="Toggle Chat" },
