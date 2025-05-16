@@ -11,9 +11,6 @@ return {
       callback = function()
         if vim.g.colors_name ~= "gruvbox-material" then return end
         vim.api.nvim_set_hl(0, "@function.builtin", { link = "YellowBold" })
-        vim.api.nvim_set_hl(0, "@lsp.type.function.lua", {})
-        vim.api.nvim_set_hl(0, "@lsp.type.property.lua", {})
-        vim.api.nvim_set_hl(0, "@lsp.type.variable.lua", {})
         vim.api.nvim_set_hl(0, "@markup.heading", { bold = true })
         vim.api.nvim_set_hl(0, "@property", { link = "Fg" })
         vim.api.nvim_set_hl(0, "@punctuation.special.htmldjango", { link = "Purple" })
@@ -26,6 +23,7 @@ return {
         vim.api.nvim_set_hl(0, "MatchParen", { link = "FloatTitle" })
         vim.api.nvim_set_hl(0, "NeogitHunkHeaderCursor", { link = "TabLine" })
         vim.api.nvim_set_hl(0, "TabLineFill", { link = "PmenuExtra" })
+        vim.api.nvim_set_hl(0, "TSProperty", { link = "Fg" })
       end,
     })
     vim.cmd.colorscheme("gruvbox-material")

@@ -33,6 +33,8 @@ return {
       virtual_text = true,
     })
 
+    vim.highlight.priorities.semantic_tokens = 95
+
     vim.keymap.set({ "n", "i" }, "<C-s>", function() vim.lsp.buf.signature_help() end)
     vim.keymap.set("n", "ge", vim.diagnostic.open_float, { desc = "Diagnostic Info" })
     vim.keymap.set("n", "grI", [[<cmd>silent check vim.lsp<cr>]], { desc = "Info" })
