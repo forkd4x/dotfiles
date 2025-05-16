@@ -6,6 +6,7 @@ return {
     require("mason-lspconfig").setup({
       ensure_installed = {
         "basedpyright",
+        "dockerls",
         "emmet_language_server",
         "golangci_lint_ls", -- +"golangci-lint"
         "gopls",
