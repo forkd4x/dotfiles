@@ -23,7 +23,6 @@ return {
         vim.api.nvim_set_hl(0, "MatchParen", { link = "FloatTitle" })
         vim.api.nvim_set_hl(0, "NeogitHunkHeaderCursor", { link = "TabLine" })
         vim.api.nvim_set_hl(0, "TabLineFill", { link = "PmenuExtra" })
-        vim.api.nvim_set_hl(0, "TSProperty", { link = "Fg" })
       end,
     })
     vim.cmd.colorscheme("gruvbox-material")

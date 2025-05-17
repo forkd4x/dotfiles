@@ -18,7 +18,11 @@ return {
       },
     })
 
-    vim.lsp.config("*", {})
+    vim.lsp.config("*", {
+      on_init = function(client)
+        client.server_capabilities.semanticTokensProvider = nil
+      end,
+    })
 
     vim.lsp.config("lua_ls", {
       settings = {
@@ -33,8 +37,6 @@ return {
       signs = false,
       virtual_text = true,
     })
-
-    vim.highlight.priorities.semantic_tokens = 95
 
     vim.keymap.set({ "n", "i" }, "<C-s>", function() vim.lsp.buf.signature_help() end)
     vim.keymap.set("n", "ge", vim.diagnostic.open_float, { desc = "Diagnostic Info" })
