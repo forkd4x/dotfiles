@@ -94,21 +94,22 @@ hs.loadSpoon("Rcmd"):bindHotkeys({
   w = function()
     local front = hs.application.frontmostApplication()
     if front:name() == "kitty" then front:hide(); return end
-    local app = hs.appfinder.appFromName("kitty")
-    if not app then
-      app = hs.application.open("kitty")
+    local app = hs.application.find("kitty", true)
+    if app then app:activate()
+    else
+      -- Need to use bundleID otherwise it can find Safari with kitty tab open
+      app = hs.application.open("net.kovidgoyal.kitty", nil, true)
       hs.timer.waitUntil(
         function()
           return hs.application.frontmostApplication():name() == "kitty"
         end,
         function()
-          if rectangle then rectangle:right_half() end
-        end,
-        0.1
-      )
-      return
+          hs.timer.doAfter(0.1, function()
+            if rectangle then rectangle:right_half() end
+          end)
+      end,
+      0.1)
     end
-    app:activate()
   end,
   x = "FileZilla",
   z = "Messages",
