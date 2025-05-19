@@ -15,7 +15,12 @@ alias lls="ll -Sr"
 alias ai="nvim -c 'PrtChat;only'"
 alias uuid="uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | tee >(pbcopy)"
 function mkcd() { mkdir -p "$@" && cd "$@"; }
-function s() { kitten ssh --kitten login_shell=zsh $@ }
+function s() {
+    kitten ssh \
+        --kitten forward_remote_control=yes \
+        --kitten login_shell=zsh \
+        $@
+}
 function v() {
     nvim $1
     if [[ -f /tmp/.oil.nvim.cd ]]; then
