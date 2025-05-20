@@ -112,7 +112,6 @@ return {
     },
   },
   keys = {
-    -- TODO: Delete projects (sed replace ~/.local/state/nvim/shada/main.shada)
     { "<leader>p", function() Snacks.picker.projects({ layout = { preview = false } }) end, desc = "Project Picker" },
     { "<leader>f", function() Snacks.picker.files() end, desc = "File Picker" },
     { "<leader>e", function() Snacks.explorer() end, desc = "Explorer" },
