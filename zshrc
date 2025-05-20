@@ -100,6 +100,9 @@ elif [[ $(uname) == "Linux" ]]; then
         ln -sf ~/.dotfiles/zshrc ~/.zshrc
         rm -rf ~/.config/nvim
     fi
+    if [[ ! -d ~/.config ]]; then
+        mkdir ~/.config
+    fi
     if [[ ! -d ~/.config/nvim ]]; then
         ln -sf ~/.dotfiles/neovim ~/.config/nvim
     fi
