@@ -112,10 +112,12 @@ return {
     },
   },
   keys = {
+    { "<leader>S", function() Snacks.picker() end, desc = "Snacks Pickers" },
     { "<leader>p", function() Snacks.picker.projects({ layout = { preview = false } }) end, desc = "Project Picker" },
     { "<leader>f", function() Snacks.picker.files() end, desc = "File Picker" },
     { "<leader>e", function() Snacks.explorer() end, desc = "Explorer" },
     { "<leader><tab>", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffer Picker" },
+    { "<leader>l", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
     { "<leader>*", function() Snacks.picker.grep_word() end, desc = "Grep Word" },
     { "<leader>/", function() Snacks.picker.grep() end, desc = "Live Grep" },
     { "gro", function() Snacks.picker.lsp_symbols() end, desc = "Document Symbols" },
