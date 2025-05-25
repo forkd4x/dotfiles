@@ -14,7 +14,12 @@ return {
   keys = {
     {
       "<leader>m",
-      [[:MarkdownPreviewToggle<cr>]] .. [[:redrawstatus<cr>]],
+      function()
+        vim.cmd("MarkdownPreviewToggle")
+        vim.defer_fn(function()
+          vim.api.nvim_command("redrawstatus")
+        end, 50)
+       end,
       desc = "Markdown Preview",
     },
   },
