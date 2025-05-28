@@ -9,6 +9,7 @@ return {
   },
   {
     "mason-org/mason-lspconfig.nvim",
+    enabled = vim.uv.os_uname().sysname == "Darwin",
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
