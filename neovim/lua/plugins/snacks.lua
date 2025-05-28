@@ -113,21 +113,38 @@ return {
   },
   keys = {
     { "<leader>S", function() Snacks.picker() end, desc = "Snacks Pickers" },
+
     { "<leader>p", function() Snacks.picker.projects({ layout = { preview = false } }) end, desc = "Project Picker" },
+    { "<leader>P", function()
+        if vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t") == "main.shada" then
+          vim.cmd("write")
+          vim.cmd("rshada!")
+          vim.cmd("bwipeout!")
+        else
+          vim.cmd("edit ~/.local/state/nvim/shada/main.shada")
+          vim.fn.setreg("d", "Vaikdn")
+          vim.notify("Clean-up macro saved to `d` register")
+        end
+      end, desc = "Edit ShaDa" },
+
     { "<leader>f", function() Snacks.picker.files() end, desc = "File Picker" },
     { "<leader>e", function() Snacks.explorer() end, desc = "Explorer" },
     { "<leader><tab>", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffer Picker" },
+
     { "<leader>l", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
     { "<leader>*", function() Snacks.picker.grep_word() end, desc = "Grep Word" },
     { "<leader>/", function() Snacks.picker.grep() end, desc = "Live Grep" },
+
     { "gro", function() Snacks.picker.lsp_symbols() end, desc = "Document Symbols" },
     { "grw", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace Symbols" },
+
     { "<leader>h", function() Snacks.picker.help() end, desc = "Help Picker" },
-    { "<leader>n", function() Snacks.notifier.show_history() end, desc = "Notifier History" },
     { "<leader>r", function() Snacks.picker.resume() end, desc = "Snacks Resume" },
-    { "<leader>tT", function() Snacks.picker.todo_comments() end, desc = "Todo Picker" },
     { "<leader>z", function() Snacks.picker.zoxide() end, desc = "Zoxide Picker" },
     { "z=", function() Snacks.picker.spelling({ layout = { preset = "custom", preview = false } }) end, "Spelling Picker" },
+    { "<leader>tT", function() Snacks.picker.todo_comments() end, desc = "Todo Picker" },
+
+    { "<leader>n", function() Snacks.notifier.show_history() end, desc = "Notifier History" },
     { "<leader>F", function() Snacks.zen.zoom() end, desc = "Zoom Window" },
   }
 }
