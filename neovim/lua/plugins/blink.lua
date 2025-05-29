@@ -23,9 +23,15 @@ return {
       },
       signature = { enabled = true },
       sources = {
+        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
         providers = {
           buffer = { score_offset = -7 },
           lsp = { fallbacks = {} }, -- Always show buffer items
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            score_offset = 100,
+          },
         },
       },
       cmdline = {
