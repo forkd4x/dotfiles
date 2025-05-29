@@ -7,6 +7,7 @@ return {
       { "<leader>M", [[<cmd>Mason<cr>]], desc = "Mason" },
     },
   },
+
   {
     "mason-org/mason-lspconfig.nvim",
     enabled = vim.uv.os_uname().sysname == "Darwin",

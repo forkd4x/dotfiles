@@ -27,7 +27,6 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter-context",
-    ft = function() return require("nvim-treesitter.parsers").available_parsers() end,
     config = function()
       require("treesitter-context").setup({ enable = false })
       vim.keymap.set("n", "<leader>`", [[<cmd>TSContextToggle<cr>]], { desc = "Context" })
@@ -39,7 +38,6 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    ft = function() return require("nvim-treesitter.parsers").available_parsers() end,
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require("nvim-treesitter.configs").setup({
