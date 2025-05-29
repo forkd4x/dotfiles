@@ -13,6 +13,7 @@ return {
         gemini = { api_key = { "cat", vim.fn.expand("~/.dotfiles/gemini.key") } },
         openai = { api_key = { "cat", vim.fn.expand("~/.dotfiles/openai.key") } },
       },
+      show_context_hints = true,
     })
     vim.api.nvim_create_autocmd("BufEnter", {
       pattern = "*/parrot/chats/*.md",
