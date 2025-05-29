@@ -29,9 +29,15 @@ return {
         },
       },
       cmdline = {
+        completion = {
+          menu = {
+            auto_show = function()
+              return vim.fn.getcmdtype() == ":"
+            end,
+          },
+        },
         keymap = {
           preset = "inherit",
-          ["<Tab>"] = { "show_and_insert", "select_and_accept" },
         },
       },
     })

@@ -54,6 +54,9 @@ vim.keymap.set("n", "gp", [[ "`[" . getregtype() . "`]" ]], {
   expr = true, desc = "Select last paste"
 })
 
+-- Easier command mode
+vim.keymap.set("n", ";", ":")
+
 -- Move to first character and end of lines with homerow
 vim.keymap.set({ "n", "o", "x" }, "H", "_")
 vim.keymap.set({ "n", "o", "x" }, "L", "$")
@@ -62,9 +65,6 @@ vim.keymap.set({ "n", "o", "x" }, "L", "$")
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
--- Use Cmd+j/k in command completion popups
-vim.keymap.set("c", "<up>",   "<C-p>", { remap = true })
-vim.keymap.set("c", "<down>", "<C-n>", { remap = true })
 
 -- Delete buffer without saving/prompt
 vim.keymap.set("n", "<leader>k", [[<cmd>bw!<cr>]], { desc = "Wipe Buffer" })
