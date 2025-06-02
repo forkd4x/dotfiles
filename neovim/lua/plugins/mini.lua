@@ -42,24 +42,33 @@ return {
 
     require("mini.clue").setup({
       triggers = {
-        { mode = 'n', keys = '<Leader>' },
-        { mode = 'x', keys = '<Leader>' },
-        { mode = 'i', keys = '<C-x>' },
-        { mode = 'n', keys = 'g' },
-        { mode = 'x', keys = 'g' },
-        { mode = 'n', keys = "'" },
-        { mode = 'n', keys = '`' },
-        { mode = 'x', keys = "'" },
-        { mode = 'x', keys = '`' },
-        { mode = 'n', keys = '"' },
-        { mode = 'x', keys = '"' },
-        { mode = 'i', keys = '<C-r>' },
-        { mode = 'c', keys = '<C-r>' },
-        { mode = 'n', keys = '<C-w>' },
-        { mode = 'n', keys = 'z' },
-        { mode = 'x', keys = 'z' },
-        { mode = 'n', keys = '[' },
-        { mode = 'n', keys = ']' },
+        -- Leader triggers
+        { mode = "n", keys = "<Leader>" },
+        { mode = "x", keys = "<Leader>" },
+        -- Built-in completion
+        { mode = "i", keys = "<C-x>" },
+        -- `g` key
+        { mode = "n", keys = "g" },
+        { mode = "x", keys = "g" },
+        { mode = "n", keys = "gc" }, -- Fix `gcc` on remote servers
+        -- Marks
+        { mode = "n", keys = "'" },
+        { mode = "n", keys = "`" },
+        { mode = "x", keys = "'" },
+        { mode = "x", keys = "`" },
+        -- Registers
+        { mode = "n", keys = '"' },
+        { mode = "x", keys = '"' },
+        { mode = "i", keys = "<C-r>" },
+        { mode = "c", keys = "<C-r>" },
+        -- Window commands
+        { mode = "n", keys = "<C-w>" },
+        -- `z` key
+        { mode = "n", keys = "z" },
+        { mode = "x", keys = "z" },
+        -- Prev/Next commands
+        { mode = "n", keys = "[" },
+        { mode = "n", keys = "]" },
       },
       clues = {
         require("mini.clue").gen_clues.builtin_completion(),
