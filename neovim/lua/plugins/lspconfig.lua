@@ -25,8 +25,20 @@ return {
 
     vim.keymap.set({ "n", "i" }, "<C-s>", function() vim.lsp.buf.signature_help() end)
     vim.keymap.set("n", "ge", vim.diagnostic.open_float, { desc = "Diagnostic Info" })
-    vim.keymap.set("n", "grI", [[<cmd>silent check vim.lsp<cr>]], { desc = "Info" })
-    vim.keymap.set("n", "grR", [[<cmd>LspRestart<cr>]], { desc = "Restart" })
+
+    vim.keymap.set("n", "grI", [[<cmd>silent checkhealth vim.lsp<cr>]], { desc = "Info" })
+
+    vim.keymap.set("n", "grR", function()
+      local clients = vim.lsp.get_clients({ bufnr = 0 })
+      if #clients > 0 then
+        for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+          vim.cmd("LspRestart " .. client.name)
+          vim.notify("Restarted " .. client.name, vim.log.levels.INFO)
+        end
+      else
+        vim.notify("No active LSP clients", vim.log.levels.WARN)
+      end
+    end, { desc = "Restart" })
 
     vim.keymap.set("n", "grh", function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
