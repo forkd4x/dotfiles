@@ -64,14 +64,14 @@ return {
       actions = {
         open_neogit = function(picker, item)
           if not item then return end
-          Snacks.picker.actions.cd(_, item)
+          Snacks.picker.actions.cd(picker, item)
           Snacks.picker.actions.close(picker)
           local dir = item.dir and item.file or item.cwd
           vim.cmd("Neogit kind=replace cwd=" .. dir)
         end,
         open_oil = function(picker, item)
           if not item then return end
-          Snacks.picker.actions.cd(_, item)
+          Snacks.picker.actions.cd(picker, item)
           Snacks.picker.actions.close(picker)
           vim.schedule(function()
             if item.dir then
