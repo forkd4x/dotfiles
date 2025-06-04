@@ -4,6 +4,7 @@ return {
   opts = {
     bigfile = { enabled = true },
     explorer = { replace_netrw = false },
+    image = { enabled = true },
     input = { enabled = true },
     notifier = { enabled = true },
     picker = {
