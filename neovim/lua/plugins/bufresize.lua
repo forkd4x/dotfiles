@@ -12,6 +12,6 @@ return {
     })
 
     -- Fix statusline disappearing on mouse click
-    vim.keymap.del({ "n", "i" }, "<LeftRelease>")
+    vim.keymap.del({ "n", "i", "x" }, "<LeftRelease>")
   end,
 }
