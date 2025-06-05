@@ -13,6 +13,8 @@ alias ll="ls -al"
 alias llt="ll -tr"
 alias lls="ll -Sr"
 alias ai="nvim -c 'PrtChat;only'"
+alias c="claude"
+alias C="claude --dangerously-skip-permissions"
 alias uuid="uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | tee >(pbcopy)"
 function mkcd() { mkdir -p "$@" && cd "$@"; }
 function s() {
@@ -65,6 +67,7 @@ if [[ $(uname) == "Darwin" ]]; then
         open -W ~/Downloads/python-2.7.18-macosx10.9.pkg
         rm /usr/local/bin/python
         rm /usr/local/bin/pip
+        jq -r '. | to_entries[] | "\(.key)@\(.value)"' ~/.dotfiles/npm.json | xargs -I {} npm install -g {}
     fi
     if [[ ! -d ~/.dotfiles ]]; then
         git clone git@github.com:forkd4x/dotfiles.git ~/.dotfiles

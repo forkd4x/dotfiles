@@ -12,6 +12,7 @@ brew "zoxide"
 # Casks
 cask "caffeine"
 cask "chromedriver"
+cask "claude"
 cask "docker"
 cask "font-iosevka"
 cask "google-chrome"

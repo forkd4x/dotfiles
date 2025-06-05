@@ -55,13 +55,13 @@ hs.loadSpoon("Rcmd"):bindHotkeys({
     hs.osascript.applescript(script)
     hs.alert("Copied email link to clipboard")
   end,
-  c = "Calendar",
+  c = "Claude",
+  C = "Calendar",
   d = "Things3",
   e = "Microsoft Excel",
   f = "Finder",
   g = "Google Chrome",
   h = "Hammerspoon",
-  j = "Msty",
   k = function() hs.application.frontmostApplication():hide() end,
   m = "Music",
   n = "Notion",

@@ -8,8 +8,6 @@ return {
       llm_prefix = "🤖:",
       online_model_selection = true,
       providers = {
-        anthropic = { api_key = { "cat", vim.fn.expand("~/.dotfiles/anthropic.key") } },
-        deepseek = { api_key = { "cat", vim.fn.expand("~/.dotfiles/deepseek.key") } },
         gemini = { api_key = { "cat", vim.fn.expand("~/.dotfiles/gemini.key") } },
         openai = { api_key = { "cat", vim.fn.expand("~/.dotfiles/openai.key") } },
       },
