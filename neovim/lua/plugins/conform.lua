@@ -14,6 +14,7 @@ return {
       css = { "prettier" },
       go = { "gofmt" },
       html = { "prettier" },
+      htmldjango = { "djlint" },
       javascript = { "prettier" },
       json = { "jq" },
       python = { "ruff_format" },

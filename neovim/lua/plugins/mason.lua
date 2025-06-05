@@ -11,22 +11,28 @@ return {
   {
     "mason-org/mason-lspconfig.nvim",
     enabled = vim.uv.os_uname().sysname == "Darwin",
-    config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "basedpyright",
-          "dockerls",
-          "emmet_language_server",
-          "golangci_lint_ls", -- +"golangci-lint"
-          "gopls",
-          "intelephense",
-          "jsonls",
-          "lua_ls",
-          "ruff",
-          "yamlls",
-        },
-      })
-    end,
+    opts = {},
   },
 
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    enabled = vim.uv.os_uname().sysname == "Darwin",
+    opts = {
+      ensure_installed = {
+        "basedpyright",
+        "djlint",
+        "dockerls",
+        "emmet_language_server",
+        "golangci-lint",
+        "golangci_lint_ls",
+        "gopls",
+        "intelephense",
+        "jsonls",
+        "lua_ls",
+        "prettier",
+        "ruff",
+        "yamlls",
+      }
+    },
+  },
 }
