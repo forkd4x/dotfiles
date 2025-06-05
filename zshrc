@@ -114,3 +114,19 @@ fi
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # smartcase completion
 eval "$(zoxide init zsh)"
+
+# Keep dotfiles updated on remote servers
+if [[ $(uname) != "Darwin" ]] && [[ -d ~/.dotfiles/.git ]]; then
+    UPDATE_MARKER=~/.dotfiles/.UPDATED
+    if [[ ! -f $UPDATE_MARKER ]] || [[ $(find "$UPDATE_MARKER" -mtime +7 -print 2>/dev/null) ]]; then
+        echo "Auto-updating dotfiles..."
+        (
+            cd ~/.dotfiles
+            git stash --quiet
+            git pull --quiet
+            git stash pop --quiet 2>/dev/null || true
+        )
+        touch $UPDATE_MARKER
+        exec zsh
+    fi
+fi

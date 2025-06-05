@@ -1,6 +1,7 @@
 .DS_Store
 .git/
 .venv/
+.UPDATED
 *lock.json
 *.key
 kitty/*.py
