@@ -70,26 +70,26 @@ return {
           vim.notify("Deleting " .. what .. " from ShaDa...", vim.log.levels.INFO)
           vim.cmd("redraw")
           vim.defer_fn(function()
-            local patterns = {}
-            for _, item in ipairs(items) do
-              table.insert(patterns, vim.fn.escape(item.file, "/\\"))
-            end
             vim.cmd("edit " .. vim.fn.stdpath("state") .. "/shada/main.shada")
-            -- Search and delete all occurrences for each pattern
-            local total = 0
-            for _, pattern in ipairs(patterns) do
-              local deleted = 0
-              while vim.fn.search(pattern, "w") > 0 do
-                -- TODO: Remove mini.ai requirement
-                vim.cmd("normal! Vaikdn")
-                deleted = deleted + 1
-              end
-              total = total + deleted
+            local deleted = 0
+            for _, item in ipairs(items) do
+              local regex =
+                "^\\S\\(\\n\\s\\|[^\\n]\\)\\{-}"
+                .. vim.fn.escape(item.file, "/\\")
+                .. "\\_.\\{-}\\ze\\(\\n^\\S\\|\\%$\\)"
+              -- Search for entries and count how many will be deleted
+              vim.cmd("/" .. regex)
+              deleted = deleted + vim.fn.searchcount().total
+              -- Remove entries by substituting with empty string
+              vim.cmd("%s/" .. regex .. "//g")
+              -- Clean up empty lines caused by previous substitution
+              -- TODO: Initial regex can probably be improved so this isn't required
+              vim.cmd("%s/^\\n//g")
             end
             vim.cmd("write!")
             vim.cmd("rshada!")
             vim.cmd("bwipeout!")
-            vim.notify("Removed " .. total .. " entries for " .. what, vim.log.levels.INFO)
+            vim.notify("Removed " .. deleted .. " entries for " .. what, vim.log.levels.INFO)
             Snacks.picker.projects({ layout = { preview = false } })
           end, 100)
         end,
