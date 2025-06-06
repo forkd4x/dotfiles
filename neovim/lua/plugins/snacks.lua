@@ -63,12 +63,35 @@ return {
         frecency = true,
       },
       actions = {
-        open_neogit = function(picker, item)
-          if not item then return end
-          Snacks.picker.actions.cd(picker, item)
+        delete_projects = function(picker, _)
+          local items = picker:selected({ fallback = true })
+          local what = #items == 1 and items[1].file or #items .. " projects"
           Snacks.picker.actions.close(picker)
-          local dir = item.dir and item.file or item.cwd
-          vim.cmd("Neogit kind=replace cwd=" .. dir)
+          vim.notify("Deleting " .. what .. " from ShaDa...", vim.log.levels.INFO)
+          vim.cmd("redraw")
+          vim.defer_fn(function()
+            local patterns = {}
+            for _, item in ipairs(items) do
+              table.insert(patterns, vim.fn.escape(item.file, "/\\"))
+            end
+            vim.cmd("edit " .. vim.fn.stdpath("state") .. "/shada/main.shada")
+            -- Search and delete all occurrences for each pattern
+            local total = 0
+            for _, pattern in ipairs(patterns) do
+              local deleted = 0
+              while vim.fn.search(pattern, "w") > 0 do
+                -- TODO: Remove mini.ai requirement
+                vim.cmd("normal! Vaikdn")
+                deleted = deleted + 1
+              end
+              total = total + deleted
+            end
+            vim.cmd("write!")
+            vim.cmd("rshada!")
+            vim.cmd("bwipeout!")
+            vim.notify("Removed " .. total .. " entries for " .. what, vim.log.levels.INFO)
+            Snacks.picker.projects({ layout = { preview = false } })
+          end, 100)
         end,
         open_oil = function(picker, item)
           if not item then return end
@@ -82,15 +105,23 @@ return {
               vim.cmd("Oil")
             end
           end)
-        end
+        end,
+        open_neogit = function(picker, item)
+          if not item then return end
+          Snacks.picker.actions.cd(picker, item)
+          Snacks.picker.actions.close(picker)
+          local dir = item.dir and item.file or item.cwd
+          vim.cmd("Neogit kind=replace cwd=" .. dir)
+        end,
       },
       win = {
         input = {
           keys = {
-            ["<esc>"] = { "close", mode = { "n", "i" } },
             ["<C-.>"] = { "toggle_hidden", mode = { "n", "i" } },
-            ["<C-n>"] = { "open_neogit", mode = { "n", "i" } },
+            ["<C-d>"] = { "delete_projects", mode = { "n", "i" } },
             ["<C-->"] = { "open_oil", mode = { "n", "i" } },
+            ["<C-n>"] = { "open_neogit", mode = { "n", "i" } },
+            ["<esc>"] = { "close", mode = { "n", "i" } },
           },
         },
       },
@@ -116,18 +147,6 @@ return {
     { "<leader>S", function() Snacks.picker() end, desc = "Snacks Pickers" },
 
     { "<leader>p", function() Snacks.picker.projects({ layout = { preview = false } }) end, desc = "Project Picker" },
-    { "<leader>P", function()
-        if vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t") == "main.shada" then
-          vim.cmd("write")
-          vim.cmd("rshada!")
-          vim.cmd("bwipeout!")
-        else
-          vim.cmd("edit ~/.local/state/nvim/shada/main.shada")
-          vim.fn.setreg("d", "Vaikdn")
-          vim.notify("Clean-up macro saved to `d` register")
-        end
-      end, desc = "Edit ShaDa" },
-
     { "<leader>f", function() Snacks.picker.files() end, desc = "File Picker" },
     { "<leader>e", function() Snacks.explorer() end, desc = "Explorer" },
     { "<leader><tab>", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffer Picker" },
