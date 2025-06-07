@@ -64,9 +64,9 @@ return {
       },
       actions = {
         delete_projects = function(picker, _)
+          Snacks.picker.actions.close(picker)
           local items = picker:selected({ fallback = true })
           local what = #items == 1 and items[1].file or #items .. " projects"
-          Snacks.picker.actions.close(picker)
           vim.notify("Deleting " .. what .. " from ShaDa...", vim.log.levels.INFO)
           vim.cmd("redraw")
           vim.defer_fn(function()
@@ -76,15 +76,12 @@ return {
               local regex =
                 "^\\S\\(\\n\\s\\|[^\\n]\\)\\{-}"
                 .. vim.fn.escape(item.file, "/\\")
-                .. "\\_.\\{-}\\ze\\(\\n^\\S\\|\\%$\\)"
+                .. "\\_.\\{-}\\n*\\ze\\(^\\S\\|\\%$\\)"
               -- Search for entries and count how many will be deleted
               vim.cmd("/" .. regex)
               deleted = deleted + vim.fn.searchcount().total
               -- Remove entries by substituting with empty string
               vim.cmd("%s/" .. regex .. "//g")
-              -- Clean up empty lines caused by previous substitution
-              -- TODO: Initial regex can probably be improved so this isn't required
-              vim.cmd("%s/^\\n//g")
             end
             vim.cmd("write!")
             vim.cmd("rshada!")
