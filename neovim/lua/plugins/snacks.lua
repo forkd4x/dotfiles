@@ -58,6 +58,15 @@ return {
             },
           },
         },
+        projects = {
+          win = {
+            input = {
+              keys = {
+                ["<C-x>"] = { "delete_projects", mode = { "n", "i" } },
+              },
+            },
+          },
+        },
       },
       matcher = {
         frecency = true,
@@ -115,7 +124,6 @@ return {
         input = {
           keys = {
             ["<C-.>"] = { "toggle_hidden", mode = { "n", "i" } },
-            ["<C-d>"] = { "delete_projects", mode = { "n", "i" } },
             ["<C-->"] = { "open_oil", mode = { "n", "i" } },
             ["<C-n>"] = { "open_neogit", mode = { "n", "i" } },
             ["<esc>"] = { "close", mode = { "n", "i" } },
