@@ -7,7 +7,6 @@ return {
       provider_selector = function() return { "treesitter", "indent" } end,
     })
     vim.schedule(function()
-      vim.keymap.del("n", "zc")
       vim.keymap.set("n", "zm", require("ufo").closeFoldsWith)
       vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
       vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
@@ -20,7 +19,10 @@ return {
   keys = {
     {
       "zc",
-      function() vim.defer_fn(function() vim.cmd([[normal zc]]) end, 100) end,
+      function() vim.defer_fn(function()
+        vim.cmd([[normal zc]])
+        vim.keymap.set("n", "zc", "zc", { desc = "Close fold" })
+      end, 100) end,
     },
     {
       "zm",
