@@ -9,5 +9,7 @@ return {
   end,
   keys = {
     { "<leader>tt", [[<cmd>TodoTrouble toggle<cr>]], desc = "Todo Trouble" },
+    ---@diagnostic disable-next-line: undefined-field
+    { "<leader>ts", function() Snacks.picker.todo_comments() end, desc = "Todo Snacksj" },
   },
 }

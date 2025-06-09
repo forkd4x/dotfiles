@@ -67,6 +67,12 @@ return {
             },
           },
         },
+        spelling = {
+          layout = {
+            preset = "custom",
+            preview = false,
+          },
+        },
       },
       matcher = {
         frecency = true,
@@ -96,7 +102,7 @@ return {
             vim.cmd("rshada!")
             vim.cmd("bwipeout!")
             vim.notify("Removed " .. deleted .. " entries for " .. what, vim.log.levels.INFO)
-            Snacks.picker.projects({ layout = { preview = false } })
+            Snacks.picker.projects()
           end, 100)
         end,
         open_oil = function(picker, item)
@@ -151,7 +157,7 @@ return {
   keys = {
     { "<leader>S", function() Snacks.picker() end, desc = "Snacks Pickers" },
 
-    { "<leader>p", function() Snacks.picker.projects({ layout = { preview = false } }) end, desc = "Project Picker" },
+    { "<leader>p", function() Snacks.picker.projects() end, desc = "Project Picker" },
     { "<leader>f", function() Snacks.picker.files() end, desc = "File Picker" },
     { "<leader>e", function() Snacks.explorer() end, desc = "Explorer" },
     { "<leader><tab>", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffer Picker" },
@@ -166,8 +172,7 @@ return {
     { "<leader>h", function() Snacks.picker.help() end, desc = "Help Picker" },
     { "<leader>r", function() Snacks.picker.resume() end, desc = "Snacks Resume" },
     { "<leader>z", function() Snacks.picker.zoxide() end, desc = "Zoxide Picker" },
-    { "z=", function() Snacks.picker.spelling({ layout = { preset = "custom", preview = false } }) end, "Spelling Picker" },
-    { "<leader>tT", function() Snacks.picker.todo_comments() end, desc = "Todo Picker" },
+    { "z=", function() Snacks.picker.spelling() end, "Spelling Picker"},
 
     { "<leader>n", function() Snacks.notifier.show_history() end, desc = "Notifier History" },
     { "<leader>F", function() Snacks.zen.zoom() end, desc = "Zoom Window" },
