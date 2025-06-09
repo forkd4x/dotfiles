@@ -25,18 +25,25 @@ return {
         ["<C-l>"] = false,
         ["<C-p>"] = "actions.preview",
         ["<C-r>"] = "actions.refresh",
-        ["<A-y>"] = function()
-          vim.fn.setreg("+",
-             require("oil").get_current_dir() .. require("oil").get_cursor_entry().name)
-        end,
-        ["Q"] = function()
-          local file = io.open("/tmp/.oil.nvim.cd", "w")
-          if file ~= nil then
-            file:write(require("oil").get_current_dir())
-            file:close()
-          end
-          vim.cmd("qa!")
-        end,
+        ["<A-y>"] = {
+          function()
+            vim.fn.setreg("+", require("oil").get_current_dir() .. require("oil").get_cursor_entry().name)
+          end, desc = "Copy full file path to clipboard",
+        },
+        ["~"] = {
+          function() require("oil").open(vim.fn.expand("~")) end,
+          desc = "Jump to home directory",
+        },
+        ["Q"] = {
+          function()
+            local file = io.open("/tmp/.oil.nvim.cd", "w")
+            if file ~= nil then
+              file:write(require("oil").get_current_dir())
+              file:close()
+            end
+            vim.cmd("qa!")
+          end, desc = "Exit Neovim to current directory",
+        },
       },
       win_options = { winbar = "%{v:lua.require('oil').get_current_dir()}" },
     })
