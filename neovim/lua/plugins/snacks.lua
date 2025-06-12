@@ -1,3 +1,10 @@
+local function grep_multiline()
+  Snacks.picker.grep({ search = " -- -U --multiline-dotall" })
+  vim.defer_fn(function()
+    vim.cmd("normal I")
+  end, 100)
+end
+
 return {
   "folke/snacks.nvim",
   lazy = false,
@@ -125,6 +132,17 @@ return {
           local dir = item.dir and item.file or item.cwd
           vim.cmd("Neogit kind=replace cwd=" .. dir)
         end,
+        live_grep = function(picker, item)
+          if not item then return end
+          Snacks.picker.actions.cd(picker, item)
+          Snacks.picker.actions.close(picker)
+          Snacks.picker.grep()
+        end,
+        grep_multiline = function(picker, item)
+          Snacks.picker.actions.cd(picker, item)
+          Snacks.picker.actions.close(picker)
+          vim.defer_fn(grep_multiline, 100)
+        end,
       },
       win = {
         input = {
@@ -132,6 +150,8 @@ return {
             ["<C-.>"] = { "toggle_hidden", mode = { "n", "i" } },
             ["<C-->"] = { "open_oil", mode = { "n", "i" } },
             ["<C-n>"] = { "open_neogit", mode = { "n", "i" } },
+            ["<C-/>"] = { "live_grep", mode = { "n" , "i" } },
+            ["<C-\\>"] = { "grep_multiline", mode = { "n" , "i" } },
             ["<esc>"] = { "close", mode = { "n", "i" } },
           },
         },
@@ -165,6 +185,7 @@ return {
     { "<leader>l", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
     { "<leader>*", function() Snacks.picker.grep_word() end, desc = "Grep Word" },
     { "<leader>/", function() Snacks.picker.grep() end, desc = "Live Grep" },
+    { "<leader>\\", grep_multiline, desc = "Live Grep Multi-line" },
 
     { "gro", function() Snacks.picker.lsp_symbols() end, desc = "Document Symbols" },
     { "grw", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace Symbols" },
