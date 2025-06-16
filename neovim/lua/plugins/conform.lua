@@ -8,13 +8,13 @@ return {
         vim.b[bufnr].format_on_save = (vim.bo[bufnr].filetype == "go")
       end
       if vim.b[bufnr].format_on_save == false then return end
-      return { timeout_ms = 500, lsp_format = "fallback" }
+      return { lsp_format = "fallback", timeout_ms = 2000 }
     end,
     formatters_by_ft = {
       css = { "prettier" },
       go = { "gofmt" },
       html = { "prettier" },
-      htmldjango = { "djlint" },
+      htmldjango = { "djlint", "prettier" },
       javascript = { "prettier" },
       json = { "jq" },
       python = { "ruff_format" },
@@ -22,9 +22,33 @@ return {
   },
   keys = {
     {
-      "<leader>=", mode = { "n", "x" },
-      function() require("conform").format({ lsp_format = "fallback" }) end,
+      "<leader>=",
+      function()
+        require("conform").format({
+          lsp_format = "fallback",
+          timeout_ms = 2000,
+        })
+      end,
       desc = "Format",
+    },
+    {
+      "<leader>=", mode = { "x" },
+      function()
+        local conform = require("conform")
+        require("conform").format_lines(
+          conform.list_formatters_for_buffer(0),
+          vim.api.nvim_buf_get_lines(0, vim.fn.line("'<") - 1, vim.fn.line("'>"), false),
+          { lsp_format = "fallback", timeout_ms = 2000 },
+          function(err, lines)
+              if err or lines == nil then
+                vim.notify(vim.inspect(err))
+              else
+                vim.api.nvim_buf_set_lines(0, vim.fn.line("'<") - 1, vim.fn.line("'>"), false, lines)
+              end
+          end
+        )
+      end,
+      desc = "Format range",
     },
     {
       "<leader>+", mode = { "n", "x" },

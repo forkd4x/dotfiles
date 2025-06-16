@@ -1,0 +1,16 @@
+{
+  "plugins": [
+    "/opt/homebrew/lib/node_modules/prettier-plugin-jinja-template/lib/index.js",
+    "/opt/homebrew/lib/node_modules/prettier-plugin-tailwindcss/dist/index.mjs"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.html"
+      ],
+      "options": {
+        "parser": "jinja-template"
+      }
+    }
+  ]
+}

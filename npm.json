@@ -1,4 +1,6 @@
 {
   "@anthropic-ai/claude-code": "latest",
-  "ccusage": "latest"
+  "ccusage": "latest",
+  "prettier-plugin-jinja-template": "latest",
+  "prettier-plugin-tailwindcss": "latest"
 }

@@ -68,6 +68,7 @@ if [[ $(uname) == "Darwin" ]]; then
         rm /usr/local/bin/python
         rm /usr/local/bin/pip
         jq -r '. | to_entries[] | "\(.key)@\(.value)"' ~/.dotfiles/npm.json | xargs -I {} npm install -g {}
+        ln -sf ~/.dotfiles/.prettierrc ~/.prettierrc
     fi
     if [[ ! -d ~/.dotfiles ]]; then
         git clone git@github.com:forkd4x/dotfiles.git ~/.dotfiles
