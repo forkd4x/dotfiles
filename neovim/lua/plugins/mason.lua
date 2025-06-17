@@ -31,6 +31,7 @@ return {
         "lua_ls",
         "prettier",
         "ruff",
+        "templ",
         "yamlls",
       }
     },
