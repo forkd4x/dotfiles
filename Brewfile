@@ -37,6 +37,7 @@ mas "Microsoft Excel", id: 462058435
 mas "Microsoft Outlook", id: 985367838
 mas "Microsoft Word", id: 462054704
 mas "OTP Manager", id: 928941247
+mas "Spokenly", id: 6740315592
 mas "Pixelmator Pro", id: 1289583905
 mas "The Unarchiver", id: 425424353
 mas "Things", id: 904280696
