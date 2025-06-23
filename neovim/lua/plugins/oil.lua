@@ -20,7 +20,7 @@ return {
         { "icon" },
       },
       keymaps = {
-        ["<esc>"] = "actions.close",
+        ["<esc>"] = { "actions.close", mode = "n" },
         ["<C-h>"] = false,
         ["<C-l>"] = false,
         ["<C-p>"] = "actions.preview",
