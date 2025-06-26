@@ -16,6 +16,7 @@ return {
     notifier = { enabled = true },
     picker = {
       enabled = true,
+      prompt = "❯ ",
       layouts = {
         custom = {
           sidebar = {
