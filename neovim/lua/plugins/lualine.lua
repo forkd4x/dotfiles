@@ -1,7 +1,7 @@
 local function parrot_status()
   if (
     require("lazy.core.config").plugins["parrot.nvim"]._.loaded == nil
-    or tonumber(io.popen("stty size"):read():match("%d+ (%d+)")) < 80
+    or vim.o.columns < 80
   ) then
     return ""
   end
