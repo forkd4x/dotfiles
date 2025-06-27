@@ -29,7 +29,7 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
     config = function()
       require("treesitter-context").setup({ enable = false })
-      vim.keymap.set("n", "<leader>`", [[<cmd>TSContextToggle<cr>]], { desc = "Context" })
+      vim.keymap.set("n", "<leader>`", [[<cmd>TSContext toggle<cr>]], { desc = "Context" })
       vim.keymap.set("n", "[`", function()
         require("treesitter-context").go_to_context(vim.v.count1)
       end, { desc = "Go To Context"})
