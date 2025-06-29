@@ -36,6 +36,18 @@ return {
         "diagnostics",
         "filetype",
       },
+      lualine_z = {
+        {
+          "location",
+          fmt = function()
+            local line = vim.fn.line('.')
+            local total_lines = vim.fn.line('$')
+            local col = vim.fn.col('.')
+            local line_length = vim.fn.col('$') - 1
+            return string.format('%d/%d:%d/%d', line, total_lines, col, line_length)
+          end,
+        },
+      },
     },
   },
 }
