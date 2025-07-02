@@ -7,22 +7,41 @@ return {
       chat_user_prefix = "💬:",
       llm_prefix = "🤖:",
       providers = {
-        openai = {
-          name = "openai",
-          api_key = { "cat", vim.fn.expand("~/.dotfiles/openai.key") },
-          endpoint = "https://api.openai.com/v1/chat/completions",
+        anthropic = {
+          name = "anthropic",
+          endpoint = "https://api.anthropic.com/v1/messages",
+          model_endpoint = "https://api.anthropic.com/v1/models",
+          api_key = { "cat", vim.fn.expand("~/.dotfiles/anthropic.key") },
           params = {
-            chat = { temperature = 1.1, top_p = 1 },
-            command = { temperature = 1.1, top_p = 1 },
+            chat = { max_tokens = 4096 },
+            command = { max_tokens = 4096 },
           },
           topic = {
-            model = "gpt-4.1-nano",
-            params = { max_completion_tokens = 64 },
+            model = "claude-3-5-haiku-latest",
+            params = { max_tokens = 32 },
           },
-          models ={
-            "gpt-4.1",
-            "o4-mini",
-          }
+          headers = function(self)
+            return {
+              ["Content-Type"] = "application/json",
+              ["x-api-key"] = self.api_key,
+              ["anthropic-version"] = "2023-06-01",
+            }
+          end,
+          models = {
+            "claude-sonnet-4",
+          },
+          preprocess_payload = function(payload)
+            for _, message in ipairs(payload.messages) do
+              message.content = message.content:gsub("^%s*(.-)%s*$", "%1")
+            end
+            if payload.messages[1] and payload.messages[1].role == "system" then
+              -- remove the first message that serves as the system prompt as anthropic
+              -- expects the system prompt to be part of the API call body and not the messages
+              payload.system = payload.messages[1].content
+              table.remove(payload.messages, 1)
+            end
+            return payload
+          end,
         },
         gemini = {
           name = "gemini",
@@ -95,6 +114,23 @@ return {
             end
             return nil
           end,
+        },
+        openai = {
+          name = "openai",
+          api_key = { "cat", vim.fn.expand("~/.dotfiles/openai.key") },
+          endpoint = "https://api.openai.com/v1/chat/completions",
+          params = {
+            chat = { temperature = 1.1, top_p = 1 },
+            command = { temperature = 1.1, top_p = 1 },
+          },
+          topic = {
+            model = "gpt-4.1-nano",
+            params = { max_completion_tokens = 64 },
+          },
+          models ={
+            "gpt-4.1",
+            "o4-mini",
+          }
         },
       },
       show_context_hints = true,
