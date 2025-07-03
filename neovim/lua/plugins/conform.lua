@@ -35,6 +35,14 @@ return {
       "<leader>=", mode = { "x" },
       function()
         local conform = require("conform")
+        if conform.list_formatters_for_buffer(0)[1] ~= "prettier" then
+          require("conform").format({
+            lsp_format = "fallback",
+            timeout_ms = 2000,
+          })
+          return
+        end
+        -- Fix to make prettier range formatting work
         require("conform").format_lines(
           conform.list_formatters_for_buffer(0),
           vim.api.nvim_buf_get_lines(0, vim.fn.line("'<") - 1, vim.fn.line("'>"), false),
