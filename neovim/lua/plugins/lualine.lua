@@ -6,11 +6,7 @@ local function parrot_status()
     return ""
   end
   local info = require("parrot.config").get_status_info()
-  local is_chat = info.is_chat and "chat" or "command"
-  local provider = info.prov[is_chat].name
-  local model = string.gsub(info.model, "-20[0-9]+", "")
-  local thinking = require("parrot.config").chat_handler.providers[provider].params[is_chat].thinking
-  return string.format("{%s%s}", model, thinking and "[think]" or "")
+  return string.gsub(info.model, "-20[0-9]+", "")
 end
 
 return {

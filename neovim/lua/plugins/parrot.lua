@@ -157,7 +157,6 @@ return {
     { "<leader>ap", mode = { "x" }, [[:<C-u>'<,'>PrtChatPaste<cr>]], desc = "Chat Paste" },
     { "<leader>aP", mode = { "n", "x" }, [[:PrtProvider<cr>]], desc = "Select Provider" },
     { "<leader>aM", mode = { "n", "x" }, [[:PrtModel<cr>]], desc = "Select Model" },
-    { "<leader>at", mode = { "n" }, [[:PrtThinking<cr>]], desc = "Toggle thinking" },
     { "<leader>as", mode = { "n", "x" }, [[:PrtStatus<cr>]], desc = "Show Status" },
     { "<leader>ar", mode = { "x" }, [[:<C-u>'<,'>PrtRewrite<cr>]], desc = "Rewrite" },
     { "<leader>ae", mode = { "n", "x" }, [[:<C-u>'<,'>PrtEdit<cr>]], desc = "Edit" },
