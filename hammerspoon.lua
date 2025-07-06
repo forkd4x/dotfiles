@@ -55,8 +55,7 @@ hs.loadSpoon("Rcmd"):bindHotkeys({
     hs.osascript.applescript(script)
     hs.alert("Copied email link to clipboard")
   end,
-  c = "Claude",
-  C = "Calendar",
+  c = "Calendar",
   d = "Things3",
   e = "Microsoft Excel",
   f = "Finder",
