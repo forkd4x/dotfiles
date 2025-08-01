@@ -75,8 +75,10 @@ if [[ $(uname) == "Darwin" ]]; then
         ln -sf ~/.dotfiles/zshrc ~/.zshrc
         touch ~/.hushlogin
         jq -r '. | to_entries[] | "\(.key)@\(.value)"' ~/.dotfiles/npm.json | xargs -I {} npm install -g {}
-        ln -sf ~/.dotfiles/aider.conf.yml ~/.aider.conf.yml
         ln -sf ~/.dotfiles/.prettierrc ~/.prettierrc
+        ln -sf ~/.dotfiles/aider.conf.yml ~/.aider.conf.yml
+        zinit ice from"gh-r" as"program"; zinit light hotovo/aider-desk
+        mv ~/.local/share/zinit/plugins/hotovo---aider-desk/aider-desk.app /Applications/aider-desk.app
     fi
     if [[ ! -d ~/.config/hammerspoon ]]; then
         defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
