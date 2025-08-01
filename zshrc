@@ -13,8 +13,8 @@ alias ll="ls -al"
 alias llt="ll -tr"
 alias lls="ll -Sr"
 alias ai="nvim -c 'PrtChat;only'"
-alias c="claude"
-alias C="claude --dangerously-skip-permissions"
+alias c="ccr code"
+alias C="ccr code --dangerously-skip-permissions"
 alias uuid="uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | tee >(pbcopy)"
 function mkcd() { mkdir -p "$@" && cd "$@"; }
 function s() {

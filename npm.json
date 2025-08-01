@@ -1,5 +1,6 @@
 {
   "@anthropic-ai/claude-code": "latest",
+  "@musistudio/claude-code-router": "latest",
   "ccusage": "latest",
   "prettier-plugin-jinja-template": "latest",
   "prettier-plugin-tailwindcss": "latest"
