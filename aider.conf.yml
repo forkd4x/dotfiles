@@ -1,0 +1,6 @@
+model: openrouter/anthropic/claude-sonnet-4
+auto-commits: false
+cache-prompts: true
+notifications: true
+watch-files: true
+

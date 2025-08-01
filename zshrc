@@ -13,6 +13,7 @@ alias ll="ls -al"
 alias llt="ll -tr"
 alias lls="ll -Sr"
 alias ai="nvim -c 'PrtChat;only'"
+alias a="OPENROUTER_API_KEY=$(cat ~/.dotfiles/openrouter_work.key) aider --no-gitignore"
 alias c="ccr code"
 alias C="ccr code --dangerously-skip-permissions"
 alias uuid="uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | tee >(pbcopy)"
@@ -67,14 +68,15 @@ if [[ $(uname) == "Darwin" ]]; then
         open -W ~/Downloads/python-2.7.18-macosx10.9.pkg
         rm /usr/local/bin/python
         rm /usr/local/bin/pip
-        jq -r '. | to_entries[] | "\(.key)@\(.value)"' ~/.dotfiles/npm.json | xargs -I {} npm install -g {}
-        ln -sf ~/.dotfiles/.prettierrc ~/.prettierrc
     fi
     if [[ ! -d ~/.dotfiles ]]; then
         git clone git@github.com:forkd4x/dotfiles.git ~/.dotfiles
         git config --global core.excludesFile ~/.dotfiles/.gitignore
         ln -sf ~/.dotfiles/zshrc ~/.zshrc
         touch ~/.hushlogin
+        jq -r '. | to_entries[] | "\(.key)@\(.value)"' ~/.dotfiles/npm.json | xargs -I {} npm install -g {}
+        ln -sf ~/.dotfiles/aider.conf.yml ~/.aider.conf.yml
+        ln -sf ~/.dotfiles/.prettierrc ~/.prettierrc
     fi
     if [[ ! -d ~/.config/hammerspoon ]]; then
         defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
