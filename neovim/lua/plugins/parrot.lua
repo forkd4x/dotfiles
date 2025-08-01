@@ -7,130 +7,17 @@ return {
       chat_user_prefix = "💬:",
       llm_prefix = "🤖:",
       providers = {
-        anthropic = {
-          name = "anthropic",
-          endpoint = "https://api.anthropic.com/v1/messages",
-          model_endpoint = "https://api.anthropic.com/v1/models",
-          api_key = { "cat", vim.fn.expand("~/.dotfiles/anthropic.key") },
-          params = {
-            chat = { max_tokens = 4096 },
-            command = { max_tokens = 4096 },
-          },
+        openrouter = {
+          name = "openrouter",
+          style = "openai",
+          api_key = { "cat", vim.fn.expand("~/.dotfiles/openrouter_work.key") },
+          endpoint = "https://openrouter.ai/api/v1/chat/completions",
+          model_endpoint = "https://openrouter.ai/api/v1/models",
+          models = { "anthropic/claude-sonnet-4" },
           topic = {
-            model = "claude-3-5-haiku-latest",
+            model = "meta-llama/llama-4-maverick",
             params = { max_tokens = 32 },
           },
-          headers = function(self)
-            return {
-              ["Content-Type"] = "application/json",
-              ["x-api-key"] = self.api_key,
-              ["anthropic-version"] = "2023-06-01",
-            }
-          end,
-          models = {
-            "claude-sonnet-4",
-          },
-          preprocess_payload = function(payload)
-            for _, message in ipairs(payload.messages) do
-              message.content = message.content:gsub("^%s*(.-)%s*$", "%1")
-            end
-            if payload.messages[1] and payload.messages[1].role == "system" then
-              -- remove the first message that serves as the system prompt as anthropic
-              -- expects the system prompt to be part of the API call body and not the messages
-              payload.system = payload.messages[1].content
-              table.remove(payload.messages, 1)
-            end
-            return payload
-          end,
-        },
-        gemini = {
-          name = "gemini",
-          endpoint = function(self)
-            return "https://generativelanguage.googleapis.com/v1beta/models/"
-              .. self._model
-              .. ":streamGenerateContent?alt=sse"
-          end,
-          api_key = { "cat", vim.fn.expand("~/.dotfiles/gemini.key") },
-          params = {
-            chat = { temperature = 1.1, topP = 1, topK = 10, maxOutputTokens = 8192 },
-            command = { temperature = 0.8, topP = 1, topK = 10, maxOutputTokens = 8192 },
-          },
-          topic = {
-            model = "gemini-2.5-flash",
-            params = { maxOutputTokens = 64 },
-          },
-          headers = function(self)
-            return {
-              ["Content-Type"] = "application/json",
-              ["x-goog-api-key"] = self.api_key,
-            }
-          end,
-          models = {
-            "gemini-2.5-pro",
-            "gemini-2.5-flash",
-            "gemini-2.0-flash-lite",
-          },
-          preprocess_payload = function(payload)
-            local contents = {}
-            local system_instruction = nil
-            for _, message in ipairs(payload.messages) do
-              if message.role == "system" then
-                system_instruction = { parts = { { text = message.content } } }
-              else
-                local role = message.role == "assistant" and "model" or "user"
-                table.insert(
-                  contents,
-                  { role = role, parts = { { text = message.content:gsub("^%s*(.-)%s*$", "%1") } } }
-                )
-              end
-            end
-            local gemini_payload = {
-              contents = contents,
-              generationConfig = {
-                temperature = payload.temperature,
-                topP = payload.topP or payload.top_p,
-                maxOutputTokens = payload.max_tokens or payload.maxOutputTokens,
-              },
-            }
-            if system_instruction then
-              gemini_payload.systemInstruction = system_instruction
-            end
-            return gemini_payload
-          end,
-          process_stdout = function(response)
-            if not response or response == "" then
-              return nil
-            end
-            local success, decoded = pcall(vim.json.decode, response)
-            if
-              success
-              and decoded.candidates
-              and decoded.candidates[1]
-              and decoded.candidates[1].content
-              and decoded.candidates[1].content.parts
-              and decoded.candidates[1].content.parts[1]
-            then
-              return decoded.candidates[1].content.parts[1].text
-            end
-            return nil
-          end,
-        },
-        openai = {
-          name = "openai",
-          api_key = { "cat", vim.fn.expand("~/.dotfiles/openai.key") },
-          endpoint = "https://api.openai.com/v1/chat/completions",
-          params = {
-            chat = { temperature = 1.1, top_p = 1 },
-            command = { temperature = 1.1, top_p = 1 },
-          },
-          topic = {
-            model = "gpt-4.1-nano",
-            params = { max_completion_tokens = 64 },
-          },
-          models ={
-            "gpt-4.1",
-            "o4-mini",
-          }
         },
       },
       show_context_hints = true,
@@ -155,8 +42,7 @@ return {
     { "<leader>av", mode = { "n" }, [[:PrtChatToggle<cr>]], desc = "Toggle Chat" },
     { "<leader>av", mode = { "x" }, [[:<C-u>'<,'>PrtChatToggle<cr>]], desc ="Toggle Chat" },
     { "<leader>ap", mode = { "x" }, [[:<C-u>'<,'>PrtChatPaste<cr>]], desc = "Chat Paste" },
-    { "<leader>aP", mode = { "n", "x" }, [[:PrtProvider<cr>]], desc = "Select Provider" },
-    { "<leader>aM", mode = { "n", "x" }, [[:PrtModel<cr>]], desc = "Select Model" },
+    { "<leader>am", mode = { "n", "x" }, [[:PrtModel<cr>]], desc = "Select Model" },
     { "<leader>as", mode = { "n", "x" }, [[:PrtStatus<cr>]], desc = "Show Status" },
     { "<leader>ar", mode = { "x" }, [[:<C-u>'<,'>PrtRewrite<cr>]], desc = "Rewrite" },
     { "<leader>ae", mode = { "n", "x" }, [[:<C-u>'<,'>PrtEdit<cr>]], desc = "Edit" },
