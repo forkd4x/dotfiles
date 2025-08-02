@@ -21,7 +21,7 @@ function s() {
         $@
 }
 function v() {
-    nvim $1
+    nvim "${1:-.}"  # Open current directory if no arguments
     if [[ -f /tmp/.oil.nvim.cd ]]; then
         cd $(cat /tmp/.oil.nvim.cd)
         rm /tmp/.oil.nvim.cd
