@@ -18,6 +18,14 @@ return {
             model = "meta-llama/llama-4-maverick",
             params = { max_tokens = 32 },
           },
+          headers = function(provider)
+            return {
+              ["Content-Type"] = "application/json",
+              ["Authorization"] = "Bearer " .. provider.api_key,
+              ["X-Title"] = "Neovim",
+              ["HTTP-Referer"] = "https://github.com/frankroeder/parrot.nvim",
+            }
+          end,
         },
       },
       show_context_hints = true,
