@@ -12,10 +12,6 @@ alias ls="ls --color"
 alias ll="ls -al"
 alias llt="ll -tr"
 alias lls="ll -Sr"
-alias ai="nvim -c 'PrtChat;only'"
-alias a="OPENROUTER_API_KEY=$(cat ~/.dotfiles/openrouter_work.key) aider --no-gitignore"
-alias c="ccr code"
-alias C="ccr code --dangerously-skip-permissions"
 alias uuid="uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | tee >(pbcopy)"
 function mkcd() { mkdir -p "$@" && cd "$@"; }
 function s() {
@@ -31,6 +27,14 @@ function v() {
         rm /tmp/.oil.nvim.cd
     fi
 }
+
+if [[ $(uname) == "Darwin" ]]; then
+    alias va="nvim -c 'PrtChat;only'"
+    alias ac="OPENROUTER_API_KEY=$(cat ~/.dotfiles/openrouter.key) aider --no-gitignore"
+    alias aw="OPENROUTER_API_KEY=$(cat ~/.dotfiles/openrouter_work.key) aider --no-gitignore"
+    alias cc="claude"
+    alias cw="ccr code"
+fi
 
 # Bootstrap Zinit plugin manager
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
