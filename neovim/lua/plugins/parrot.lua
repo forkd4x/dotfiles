@@ -60,5 +60,6 @@ return {
     { "<leader>ab", mode = {  "x" }, [[:<C-u>'<,'>PrtPrepend<cr>]], desc = "Prepend" },
     { "<leader>aR", mode = { "n", "x" }, [[:<C-u>'<,'>PrtRetry<cr>]], desc = "Retry" },
     { "<leader>ai", mode = { "x" }, [[:<C-u>'<,'>PrtImplement<cr>]], desc = "Implement" },
+    { "<leader>a?", mode = { "x" }, [[:<C-u>'<,'>PrtAsk<cr>]], desc = "Ask" },
   },
 }
