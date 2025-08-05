@@ -10,7 +10,7 @@ return {
         openrouter = {
           name = "openrouter",
           style = "openai",
-          api_key = { "cat", vim.fn.expand("~/.dotfiles/openrouter.key") },
+          api_key = { "cat", vim.fn.expand("~/.dotfiles/openrouter_work.key") },
           endpoint = "https://openrouter.ai/api/v1/chat/completions",
           model_endpoint = "https://openrouter.ai/api/v1/models",
           models = { "anthropic/claude-sonnet-4" },
@@ -60,6 +60,5 @@ return {
     { "<leader>ab", mode = {  "x" }, [[:<C-u>'<,'>PrtPrepend<cr>]], desc = "Prepend" },
     { "<leader>aR", mode = { "n", "x" }, [[:<C-u>'<,'>PrtRetry<cr>]], desc = "Retry" },
     { "<leader>ai", mode = { "x" }, [[:<C-u>'<,'>PrtImplement<cr>]], desc = "Implement" },
-    { "<leader>a?", mode = { "x" }, [[:<C-u>'<,'>PrtAsk<cr>]], desc = "Ask" },
   },
 }
