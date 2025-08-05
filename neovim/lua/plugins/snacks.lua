@@ -1,5 +1,5 @@
-local function grep_multiline()
-  Snacks.picker.grep({ search = " -- -U --multiline-dotall" })
+local function grep_multiline(cwd)
+  Snacks.picker.grep({ cwd = cwd, search = " -- -U --multiline-dotall" })
   vim.defer_fn(function()
     vim.cmd("normal I")
   end, 100)
@@ -128,21 +128,28 @@ return {
         end,
         open_neogit = function(picker, item)
           if not item then return end
-          Snacks.picker.actions.cd(picker, item)
           Snacks.picker.actions.close(picker)
-          local dir = item.dir and item.file or item.cwd
-          vim.cmd("Neogit kind=replace cwd=" .. dir)
+          vim.schedule(function()
+            if vim.bo.filetype == "oil" then
+              vim.api.nvim_buf_delete(0, {})
+            end
+            Snacks.picker.actions.cd(picker, item)
+            local dir = item.dir and item.file or item.cwd
+            vim.cmd("Neogit kind=replace cwd=" .. dir)
+          end)
         end,
         live_grep = function(picker, item)
           if not item then return end
           Snacks.picker.actions.cd(picker, item)
           Snacks.picker.actions.close(picker)
-          Snacks.picker.grep()
+          Snacks.picker.grep({ cwd = item.dir and item.file or item.cwd })
         end,
         grep_multiline = function(picker, item)
           Snacks.picker.actions.cd(picker, item)
           Snacks.picker.actions.close(picker)
-          vim.defer_fn(grep_multiline, 100)
+          vim.schedule(function()
+            grep_multiline(item.dir and item.file or item.cwd)
+          end)
         end,
       },
       win = {
