@@ -15,7 +15,7 @@ return {
           model_endpoint = "https://openrouter.ai/api/v1/models",
           models = { "anthropic/claude-sonnet-4" },
           topic = {
-            model = "meta-llama/llama-4-maverick",
+            model = "openai/gpt-oss-20b:free",
             params = { max_tokens = 32 },
           },
           headers = function(provider)
