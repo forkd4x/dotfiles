@@ -100,15 +100,6 @@ return {
 
     require("mini.icons").setup()
 
-    require("mini.jump2d").setup({
-      mappings = {
-        start_jumping = "",
-      },
-    })
-    vim.keymap.set({ "n", "x" }, "s", function()
-      require("mini.jump2d").start(require("mini.jump2d").builtin_opts.single_character)
-    end)
-
     require("mini.surround").setup({
       mappings = {
         add = "gs",
