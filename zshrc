@@ -61,8 +61,8 @@ if [[ $(uname) == "Linux" ]]; then
     export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
 fi
 
-
 if [[ $(uname) == "Darwin" ]]; then
+    export PATH="$PATH:$HOME/go/bin"
     if [[ ! -d /opt/homebrew ]]; then
         xcode-select --install
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
