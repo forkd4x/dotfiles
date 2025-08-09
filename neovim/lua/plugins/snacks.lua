@@ -109,6 +109,7 @@ return {
             vim.cmd("write!")
             vim.cmd("rshada!")
             vim.cmd("bwipeout!")
+            -- FIX: Number of entries deleted no longer working
             vim.notify("Removed " .. deleted .. " entries for " .. what, vim.log.levels.INFO)
             Snacks.picker.projects()
           end, 100)
@@ -129,14 +130,9 @@ return {
         open_neogit = function(picker, item)
           if not item then return end
           Snacks.picker.actions.close(picker)
-          vim.schedule(function()
-            if vim.bo.filetype == "oil" then
-              vim.api.nvim_buf_delete(0, {})
-            end
-            Snacks.picker.actions.cd(picker, item)
-            local dir = item.dir and item.file or item.cwd
-            vim.cmd("Neogit kind=replace cwd=" .. dir)
-          end)
+          Snacks.picker.actions.cd(picker, item)
+          local dir = item.dir and item.file or item.cwd
+          vim.cmd("Neogit kind=replace cwd=" .. dir)
         end,
         live_grep = function(picker, item)
           if not item then return end
