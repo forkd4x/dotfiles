@@ -31,7 +31,6 @@ cask "windows-app" # Remote Desktop
 
 # App Store
 brew "mas"
-mas "AdGuard for Safari", id: 1440147259
 mas "Bitwarden", id: 1352778147
 mas "Dark Reader for Safari", id: 1438243180
 mas "Microsoft Excel", id: 462058435
@@ -41,6 +40,7 @@ mas "OTP Manager", id: 928941247
 mas "Pixelmator Pro", id: 1289583905
 mas "The Unarchiver", id: 425424353
 mas "Things", id: 904280696
+mas "uBlock Origin Lite", id: 6745342698
 mas "Vimari", id: 1480933944
 mas "Xcode", id: 497799835
 
