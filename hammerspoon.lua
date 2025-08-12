@@ -110,6 +110,7 @@ hs.loadSpoon("Rcmd"):bindHotkeys({
       0.1)
     end
   end,
+  W = "aider-desk",
   x = "FileZilla",
   z = "Messages",
 }):start()
