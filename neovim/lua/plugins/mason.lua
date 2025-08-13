@@ -28,6 +28,7 @@ return {
         "gopls",
         "intelephense",
         "jsonls",
+        "lemminx",
         "lua_ls",
         "prettier",
         "ruff",
