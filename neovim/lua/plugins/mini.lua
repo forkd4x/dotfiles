@@ -1,5 +1,5 @@
 return {
-  "echasnovski/mini.nvim",
+  "nvim-mini/mini.nvim",
   config = function()
     local gen_ai_spec = require("mini.extra").gen_ai_spec
     require("mini.ai").setup({
