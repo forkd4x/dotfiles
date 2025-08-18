@@ -19,6 +19,10 @@ function s() {
         --kitten forward_remote_control=yes \
         --kitten login_shell=zsh \
         $@
+    if [ $? -eq 127 ]; then
+        echo "ZSH login shell not available."
+        kitten ssh --kitten forward_remote_control=yes $@
+    fi
 }
 function v() {
     nvim $@
