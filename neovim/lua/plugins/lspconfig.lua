@@ -17,6 +17,20 @@ return {
       }
     })
 
+    -- Add `.git` to list of root markers in nvim-lspconfig ts_ls config
+    -- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/ts_ls.lua
+    vim.lsp.config("ts_ls", {
+      root_dir = function(bufnr, on_dir)
+        local root_markers = { ".git", "package.json", "tsconfig.json" }
+        root_markers = vim.fn.has('nvim-0.11.3') == 1 and { root_markers } or root_markers
+        local project_root = vim.fs.root(bufnr, root_markers)
+        if not project_root then
+          return
+        end
+        on_dir(project_root)
+      end,
+    })
+
     vim.diagnostic.config({
       severity_sort = true,
       signs = false,

@@ -33,6 +33,7 @@ return {
         "prettier",
         "ruff",
         "templ",
+        "ts_ls",
         "yamlls",
       }
     },
