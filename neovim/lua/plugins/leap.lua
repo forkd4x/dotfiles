@@ -4,24 +4,16 @@ return {
     vim.keymap.set("n", "s", "<Plug>(leap-anywhere)")
     vim.keymap.set({ "x", "o" }, "s", "<Plug>(leap)")
 
-    -- Create remote versions of all a/i text objects by inserting `r`
-    -- into the middle (`iw` becomes `irw`, etc.).
-    -- A trick to avoid having to create separate hardcoded mappings for
-    -- each text object: when entering `ar`/`ir`, consume the next
-    -- character, and create the input from that character concatenated to
-    -- `a`/`i`.
-    do
-      local remote_text_object = function(prefix)
-        local ok, ch = pcall(vim.fn.getcharstr)   -- pcall for handling <C-c>
-        if not ok or (ch == vim.keycode("<esc>")) then
-          return
-        end
-        require("leap.remote").action { input = prefix .. ch }
+    -- Create remote versions of all a/i text objects
+    local remote_text_object = function(prefix)
+      local ok, ch = pcall(vim.fn.getcharstr)   -- pcall for handling <C-c>
+      if not ok or (ch == vim.keycode("<esc>")) then
+        return
       end
-      vim.keymap.set({ "x", "o" }, "ra", function() remote_text_object("a") end)
-      vim.keymap.set({ "x", "o" }, "ri", function() remote_text_object("i") end)
+      require("leap.remote").action { input = prefix .. ch }
     end
-
+    vim.keymap.set({ "x", "o" }, "ra", function() remote_text_object("a") end)
+    vim.keymap.set({ "x", "o" }, "ri", function() remote_text_object("i") end)
     vim.keymap.set({ "x", "o" }, "rr", function()
       -- Force linewise selection.
       local V = vim.fn.mode(true):match("V") and "" or "V"
