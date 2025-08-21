@@ -4,6 +4,9 @@ return {
     vim.keymap.set("n", "s", "<Plug>(leap-anywhere)")
     vim.keymap.set({ "x", "o" }, "s", "<Plug>(leap)")
 
+    -- Grey out search space
+    vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Ignore" })
+
     -- Create remote versions of all a/i text objects
     local remote_text_object = function(prefix)
       local ok, ch = pcall(vim.fn.getcharstr)   -- pcall for handling <C-c>
