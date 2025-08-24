@@ -2,8 +2,9 @@ return {
   "abecodes/tabout.nvim",
   event = "InsertCharPre",
   config = function()
-    ---@diagnostic disable-next-line: missing-fields
-    require("tabout").setup({})
+    require("tabout").setup({
+      ignore_beginning = false,
+    })
     vim.keymap.set("i", "<tab>", [[<Plug>(TaboutMulti)]])
     vim.keymap.set("i", "<S-tab>", [[<Plug>(TaboutBackMulti)]])
   end,
