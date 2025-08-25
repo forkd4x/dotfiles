@@ -3,12 +3,14 @@ return {
   event = { "InsertEnter", "CmdlineEnter" },
   opts = {
     close = {
-      map = "<A-c>",
-      cmap = "<A-c>",
+      map = "<A-e>",
+      cmap = "<A-e>",
     },
     fastwarp = {
-      map = "<A-f>",
-      cmap = "<A-f",
+      map = "<C-e>",
+      rmap = "<C-q>",
+      cmap = "<C-e>",
+      rcmap = "<C-q>",
       nocursormove = false,
     },
     space2 = { enable = true },
