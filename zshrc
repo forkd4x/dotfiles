@@ -8,11 +8,12 @@ export EDITOR=nvim
 export MANPAGER="nvim +Man!"
 unset zle_bracketed_paste
 
-alias ls="ls --color"
-alias ll="ls -al"
-alias llt="ll -tr"
-alias lls="ll -Sr"
-alias uuid="uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | tee >(pbcopy)"
+setopt globdots # glob (*) finds hidden files
+alias ls="ls -alG"
+function ll() { ls "$@" | less -FRS }
+function llt()  { ls -t "$@" | less -FRS }
+function lls()  { ls -S "$@" | less -FRS }
+
 function mkcd() { mkdir -p "$@" && cd "$@"; }
 function s() {
     kitten ssh \
@@ -31,6 +32,7 @@ function v() {
         rm /tmp/.oil.nvim.cd
     fi
 }
+alias uuid="uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | tee >(pbcopy)"
 
 if [[ $(uname) == "Darwin" ]]; then
     alias va="nvim -c 'PrtChat;only'"
