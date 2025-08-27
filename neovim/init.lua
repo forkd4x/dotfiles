@@ -62,8 +62,8 @@ vim.keymap.set({ "n", "o", "x" }, "L", "$")
 vim.keymap.set({ "n", "o", "x" }, "M", "%")
 
 -- Fix j/k movements in wrapped lines
-vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
-vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
+vim.keymap.set({"n", "x"}, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+vim.keymap.set({"n", "x"}, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
 -- Delete buffer without saving/prompt
 vim.keymap.set("n", "<leader>k", [[<cmd>bw!<cr>]], { desc = "Wipe Buffer" })
