@@ -100,16 +100,17 @@ return {
                 "^\\S\\(\\n\\s\\|[^\\n]\\)\\{-}"
                 .. vim.fn.escape(item.file, "/\\")
                 .. "\\_.\\{-}\\n*\\ze\\(^\\S\\|\\%$\\)"
-              -- Search for entries and count how many will be deleted
-              vim.cmd("/" .. regex)
-              deleted = deleted + vim.fn.searchcount().total
+              -- Count how many entries will be deleted
+              deleted = deleted + vim.fn.searchcount({
+                maxcount = 10000,
+                pattern = vim.fn.escape(item.file, "/\\"),
+              }).total
               -- Remove entries by substituting with empty string
               vim.cmd("%s/" .. regex .. "//g")
             end
             vim.cmd("write!")
             vim.cmd("rshada!")
             vim.cmd("bwipeout!")
-            -- FIX: Number of entries deleted no longer working
             vim.notify("Removed " .. deleted .. " entries for " .. what, vim.log.levels.INFO)
             Snacks.picker.projects()
           end, 100)
