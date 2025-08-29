@@ -118,22 +118,22 @@ hs.loadSpoon("Rcmd"):bindHotkeys({
 -- Vim Keybinds
 local keymaps = {
   default = {
-    [{ "cmd", "h" }] = { "",    "left",  true },
-    [{ "cmd", "j" }] = { "",    "down" , true },
-    [{ "cmd", "k" }] = { "",    "up",    true },
-    [{ "cmd", "l" }] = { "",    "right", true },
-    [{ "cmd", "b" }] = { "alt", "left",  true },
-    [{ "cmd", "e" }] = { "alt", "right", true },
-    [{ "cmd", "d" }] = { "alt", "pagedown" },
-    [{ "cmd", "u" }] = { "alt", "pageup" },
-    [{ "alt", "h" }] = { "cmd", "left" },
-    [{ "alt", "j" }] = { "cmd", "down" },
-    [{ "alt", "k" }] = { "cmd", "up" },
-    [{ "alt", "l" }] = { "cmd", "right" },
+    [{ "cmd", "h" }]     = { "",    "left",  true },
+    [{ "cmd", "j" }]     = { "",    "down" , true },
+    [{ "cmd", "k" }]     = { "",    "up",    true },
+    [{ "cmd", "l" }]     = { "",    "right", true },
+    [{ "cmd", "b" }]     = { "alt", "left",  true },
+    [{ "cmd", "e" }]     = { "alt", "right", true },
+    [{ "cmd", "d" }]     = { "alt", "pagedown" },
+    [{ "cmd", "u" }]     = { "alt", "pageup" },
+    [{ "cmd,alt", "h" }] = { "cmd", "left" },
+    [{ "cmd,alt", "j" }] = { "cmd", "down" },
+    [{ "cmd,alt", "k" }] = { "cmd", "up" },
+    [{ "cmd,alt", "l" }] = { "cmd", "right" },
   },
-  Mail = {
-    [{ "alt", "j" }] = { "alt,cmd", "down" },
-    [{ "alt", "k" }] = { "alt,cmd", "up" },
+  Mail                   = {
+    [{ "cmd,alt", "j" }] = { "cmd,alt", "down" },
+    [{ "cmd,alt", "k" }] = { "cmd,alt", "up" },
   },
 }
 -- Add shift version of default keymaps for selection
