@@ -99,7 +99,7 @@ if [[ $(uname) == "Darwin" ]]; then
         ln -sf ~/.dotfiles/kitty ~/.config/kitty
         echo "Replacing kitty icon..."
         cp ~/.dotfiles/kitty/kitty-dark.icns /Applications/kitty.app/Contents/Resources/kitty.icns
-        sudo rm -rf /Library/Caches/com.apple.iconservices.store
+        fileicon set /Applications/kitty.app ~/.dotfiles/kitty/kitty-dark.icns
         killall Dock
     fi
     if [[ ! -d ~/.config/nvim ]]; then
