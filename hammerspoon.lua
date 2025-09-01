@@ -131,9 +131,13 @@ local keymaps = {
     [{ "cmd,alt", "k" }] = { "cmd", "up" },
     [{ "cmd,alt", "l" }] = { "cmd", "right" },
   },
-  Mail                   = {
+  Mail = {
     [{ "cmd,alt", "j" }] = { "cmd,alt", "down" },
     [{ "cmd,alt", "k" }] = { "cmd,alt", "up" },
+  },
+  Things = {
+    [{ "cmd", "return" }] = { "cmd",     "k" },
+    [{ "cmd", "delete" }] = { "alt,cmd", "k" },
   },
 }
 -- Add shift version of default keymaps for selection
