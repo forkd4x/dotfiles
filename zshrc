@@ -36,8 +36,6 @@ alias uuid="uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | tee >(pbcopy)"
 
 if [[ $(uname) == "Darwin" ]]; then
     alias va="nvim -c 'PrtChat;only'"
-    alias ac="OPENROUTER_API_KEY=$(cat ~/.dotfiles/openrouter.key) aider --no-gitignore"
-    alias aw="OPENROUTER_API_KEY=$(cat ~/.dotfiles/openrouter_work.key) aider --no-gitignore"
     alias cc="claude"
     alias cw="ccr code"
 fi
@@ -86,9 +84,6 @@ if [[ $(uname) == "Darwin" ]]; then
         touch ~/.hushlogin
         jq -r '. | to_entries[] | "\(.key)@\(.value)"' ~/.dotfiles/npm.json | xargs -I {} npm install -g {}
         ln -sf ~/.dotfiles/.prettierrc ~/.prettierrc
-        ln -sf ~/.dotfiles/aider.conf.yml ~/.aider.conf.yml
-        zinit ice from"gh-r" as"program"; zinit light hotovo/aider-desk
-        mv ~/.local/share/zinit/plugins/hotovo---aider-desk/aider-desk.app /Applications/aider-desk.app
     fi
     if [[ ! -d ~/.config/hammerspoon ]]; then
         defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"

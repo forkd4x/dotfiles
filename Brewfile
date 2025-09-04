@@ -1,4 +1,3 @@
-brew "aider"
 brew "fd"
 brew "fileicon"
 brew "fzf"
