@@ -13,10 +13,10 @@ return {
           api_key = { "cat", vim.fn.expand("~/.dotfiles/openrouter_work.key") },
           endpoint = "https://openrouter.ai/api/v1/chat/completions",
           model_endpoint = "https://openrouter.ai/api/v1/models",
-          models = { "anthropic/claude-sonnet-4" },
+          models = { "anthropic/claude-sonnet-4.5" },
           topic = {
-            model = "gpt-4.1-nano",
-            params = { max_tokens = 32 },
+            model = "openai/gpt-5-nano",
+            params = { max_tokens = 64 },
           },
           headers = function(provider)
             return {
