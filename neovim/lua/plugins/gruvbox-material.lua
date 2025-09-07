@@ -12,6 +12,7 @@ return {
         if vim.g.colors_name ~= "gruvbox-material" then return end
         vim.api.nvim_set_hl(0, "@function.builtin", { link = "YellowBold" })
         vim.api.nvim_set_hl(0, "@markup.heading", { bold = true })
+        vim.api.nvim_set_hl(0, "@markup.link.label.html", { link = "Underlined" })
         vim.api.nvim_set_hl(0, "@property", { link = "Fg" })
         vim.api.nvim_set_hl(0, "@punctuation.special.htmldjango", { link = "Purple" })
         vim.api.nvim_set_hl(0, "@tag.attribute.html", { link = "Yellow" })
