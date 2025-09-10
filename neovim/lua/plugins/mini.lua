@@ -100,6 +100,20 @@ return {
 
     require("mini.icons").setup()
 
+    require("mini.pairs").setup({
+      mappings = {
+        ['"'] = { neigh_pattern = "[^\\%a%d\"'][^\\%a%d\"']", register = { cr = true } },
+        ["'"] = { neigh_pattern = "[^\\%a%d\"'][^\\%a%d\"']", register = { cr = true } },
+      }
+    })
+    -- Fix <cr> between tags indenting properly
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = { "html", "htmldjango", "phtml", "templ", "xml" },
+      callback = function()
+        vim.keymap.set("i", "<cr>", "<cr><esc>O", { buffer = vim.api.nvim_get_current_buf() })
+      end,
+    })
+
     require("mini.surround").setup({
       mappings = {
         add = "gs",
