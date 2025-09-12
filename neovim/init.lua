@@ -56,7 +56,7 @@ vim.keymap.set("n", "gp", [[ "`[" . getregtype() . "`]" ]], {
 
 -- Move to first character and end of lines with homerow
 vim.keymap.set({ "n", "o", "x" }, "H", "_")
-vim.keymap.set({ "n", "o", "x" }, "L", "$")
+vim.keymap.set({ "n", "o", "x" }, "L", "g_")
 
 -- Easier `%`
 vim.keymap.set({ "n", "o", "x" }, "M", "%")
