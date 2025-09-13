@@ -147,6 +147,9 @@ for lhs, rhs in pairs(shiftmaps) do keymaps.default[lhs] = rhs end
 ---@diagnostic disable-next-line: undefined-field
 hs.loadSpoon("KeyMapper"):bindHotkeys(keymaps):start()
 
+hs.loadSpoon("AltClipboard")
+spoon.AltClipboard:start()
+
 -- Toggle macOS dark mode
 hs.hotkey.bind({ "ctrl", "cmd" }, "n", function()
   hs.osascript.applescript(
