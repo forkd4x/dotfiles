@@ -17,30 +17,27 @@ if f ~= nil then io.close(f) else
 end
 
 -- Caps Lock acts as Esc when tapped, Ctrl when held
----@diagnostic disable-next-line: undefined-field
-hs.loadSpoon("ControlEscape"):start()
+hs.loadSpoon("ControlEscape")
+spoon.ControlEscape:start()
 
 -- Move and resize windows
 hs.window.animationDuration = 0.1
 local mods = { "ctrl", "cmd" }
----@diagnostic disable-next-line: undefined-field
-local rectangle = hs.loadSpoon("Rectangle")
-if rectangle then
-  rectangle:bindHotkeys({
-    top_left    = { mods, "q" },  top_half    = { mods, "w" },  top_right    = { mods, "e" },
-    left_half   = { mods, "a" },  center_half = { mods, "s" },  right_half   = { mods, "d" },
-    bottom_left = { mods, "z" },  bottom_half = { mods, "x" },  bottom_right = { mods, "c" },
-    maximize    = { mods, "f" },  almost_max  = { mods, "g" },  max_height   = { mods, "9" },
-    center      = { mods, "0" },  smaller     = { mods, "-" },  larger       = { mods, "=" },
-    focus_left  = { mods, "h" },  focus_right = { mods, "l" },
-    focus_up    = { mods, "k" },  focus_down  = { mods, "j" },  focus_under =  { mods, "i" },
-  })
-  rectangle:config({ margins = 7 })
-end
+hs.loadSpoon("Rectangle")
+spoon.Rectangle:bindHotkeys({
+  top_left    = { mods, "q" },  top_half    = { mods, "w" },  top_right    = { mods, "e" },
+  left_half   = { mods, "a" },  center_half = { mods, "s" },  right_half   = { mods, "d" },
+  bottom_left = { mods, "z" },  bottom_half = { mods, "x" },  bottom_right = { mods, "c" },
+  maximize    = { mods, "f" },  almost_max  = { mods, "g" },  max_height   = { mods, "9" },
+  center      = { mods, "0" },  smaller     = { mods, "-" },  larger       = { mods, "=" },
+  focus_left  = { mods, "h" },  focus_right = { mods, "l" },
+  focus_up    = { mods, "k" },  focus_down  = { mods, "j" },  focus_under =  { mods, "i" },
+})
+spoon.Rectangle:config({ margins = 7 })
 
 -- Switch apps using the right command key
----@diagnostic disable-next-line: undefined-field
-hs.loadSpoon("Rcmd"):bindHotkeys({
+hs.loadSpoon("Rcmd")
+spoon.Rcmd:bindHotkeys({
   a = "Mail",
   A = function() -- Copy Mail.app message link to clipboard
     local script = [[
@@ -144,8 +141,8 @@ for lhs, rhs in pairs(keymaps.default) do
   shiftmaps[{ "shift," .. lhs[1], lhs[2] }] = { "shift," .. rhs[1], rhs[2], rhs[3] }
 end
 for lhs, rhs in pairs(shiftmaps) do keymaps.default[lhs] = rhs end
----@diagnostic disable-next-line: undefined-field
-hs.loadSpoon("KeyMapper"):bindHotkeys(keymaps):start()
+hs.loadSpoon("KeyMapper")
+spoon.KeyMapper:bindHotkeys(keymaps):start()
 
 hs.loadSpoon("AltClipboard")
 spoon.AltClipboard:start()
