@@ -100,11 +100,22 @@ return {
 
     require("mini.icons").setup()
 
+    local np = "[^\\\"'`][%s]"
+    local npq = "[^\\%a%d\"'`][%s]"
     require("mini.pairs").setup({
       mappings = {
-        ['"'] = { neigh_pattern = "[^\\%a%d\"'][^\\%a%d\"']", register = { cr = true } },
-        ["'"] = { neigh_pattern = "[^\\%a%d\"'][^\\%a%d\"']", register = { cr = true } },
-      }
+        ["("] = { action = "open", pair = "()", neigh_pattern = np },
+        ["["] = { action = "open", pair = "[]", neigh_pattern = np },
+        ["{"] = { action = "open", pair = "{}", neigh_pattern = np },
+
+        [")"] = { action = "close", pair = "()", neigh_pattern = np },
+        ["]"] = { action = "close", pair = "[]", neigh_pattern = np },
+        ["}"] = { action = "close", pair = "{}", neigh_pattern = np },
+
+        ['"'] = { action = "closeopen", pair = '""', neigh_pattern = npq, register = { cr = true } },
+        ["'"] = { action = "closeopen", pair = "''", neigh_pattern = npq, register = { cr = true } },
+        ["`"] = { action = "closeopen", pair = "``", neigh_pattern = npq, register = { cr = true } },
+      },
     })
     -- Fix <cr> between tags indenting properly
     vim.api.nvim_create_autocmd("FileType", {
