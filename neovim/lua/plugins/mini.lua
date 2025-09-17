@@ -15,7 +15,7 @@ return {
         around_last = "",
         inside_last = "",
       },
-      n_lines = 1000,
+      n_lines = 5000,
     })
 
     require("mini.align").setup({
