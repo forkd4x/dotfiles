@@ -100,21 +100,19 @@ return {
 
     require("mini.icons").setup()
 
-    local np = "[^\\\"'`][%s]"
-    local npq = "[^\\%a%d\"'`][%s]"
     require("mini.pairs").setup({
       mappings = {
-        ["("] = { action = "open", pair = "()", neigh_pattern = np },
-        ["["] = { action = "open", pair = "[]", neigh_pattern = np },
-        ["{"] = { action = "open", pair = "{}", neigh_pattern = np },
+        ["("] = { action = "open", pair = "()", neigh_pattern = "[^\\][%s]" },
+        ["["] = { action = "open", pair = "[]", neigh_pattern = "[^\\][%s]" },
+        ["{"] = { action = "open", pair = "{}", neigh_pattern = "[^\\][%s]" },
 
-        [")"] = { action = "close", pair = "()", neigh_pattern = np },
-        ["]"] = { action = "close", pair = "[]", neigh_pattern = np },
-        ["}"] = { action = "close", pair = "{}", neigh_pattern = np },
+        [")"] = { action = "close", pair = "()", neigh_pattern = "[^\\]." },
+        ["]"] = { action = "close", pair = "[]", neigh_pattern = "[^\\]." },
+        ["}"] = { action = "close", pair = "{}", neigh_pattern = "[^\\]." },
 
-        ['"'] = { action = "closeopen", pair = '""', neigh_pattern = npq, register = { cr = true } },
-        ["'"] = { action = "closeopen", pair = "''", neigh_pattern = npq, register = { cr = true } },
-        ["`"] = { action = "closeopen", pair = "``", neigh_pattern = npq, register = { cr = true } },
+        ['"'] = { action = "closeopen", pair = '""', neigh_pattern = "[^\\%a%d\"][%s]", register = { cr = true } },
+        ["'"] = { action = "closeopen", pair = "''", neigh_pattern = "[^\\%a%d'][%s]", register = { cr = true } },
+        ["`"] = { action = "closeopen", pair = "``", neigh_pattern = "[^\\%a%d`][%s]", register = { cr = true } },
       },
     })
     -- Fix <cr> between tags indenting properly
