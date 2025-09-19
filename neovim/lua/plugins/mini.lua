@@ -102,17 +102,8 @@ return {
 
     require("mini.pairs").setup({
       mappings = {
-        ["("] = { action = "open", pair = "()", neigh_pattern = "[^\\][%s]" },
-        ["["] = { action = "open", pair = "[]", neigh_pattern = "[^\\][%s]" },
-        ["{"] = { action = "open", pair = "{}", neigh_pattern = "[^\\][%s]" },
-
-        [")"] = { action = "close", pair = "()", neigh_pattern = "[^\\]." },
-        ["]"] = { action = "close", pair = "[]", neigh_pattern = "[^\\]." },
-        ["}"] = { action = "close", pair = "{}", neigh_pattern = "[^\\]." },
-
-        ['"'] = { action = "closeopen", pair = '""', neigh_pattern = "[^\\%a%d\"][%s]", register = { cr = true } },
-        ["'"] = { action = "closeopen", pair = "''", neigh_pattern = "[^\\%a%d'][%s]", register = { cr = true } },
-        ["`"] = { action = "closeopen", pair = "``", neigh_pattern = "[^\\%a%d`][%s]", register = { cr = true } },
+        ['"'] = { neigh_pattern = '[^\\][^%a%d]' },
+        ["'"] = { neigh_pattern = '[^\\][^%a%d]' },
       },
     })
     -- Fix <cr> between tags indenting properly
