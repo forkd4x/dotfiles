@@ -100,10 +100,15 @@ return {
 
     require("mini.icons").setup()
 
+    local np = "[^\\][^%a%d]"
     require("mini.pairs").setup({
       mappings = {
-        ['"'] = { neigh_pattern = '[^\\][^%a%d]' },
-        ["'"] = { neigh_pattern = '[^\\][^%a%d]' },
+        ["("] = { neigh_pattern = np },
+        ["["] = { neigh_pattern = np },
+        ["{"] = { neigh_pattern = np },
+        ['"'] = { neigh_pattern = np },
+        ["'"] = { neigh_pattern = np },
+        ["`"] = { neigh_pattern = np },
       },
     })
     -- Fix <cr> between tags indenting properly
