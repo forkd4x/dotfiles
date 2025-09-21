@@ -1,7 +1,15 @@
 -- Copy to local system clipboard from remote with OSC52 without requiring read-clipboard
 if vim.uv.os_uname() ~= "Darwin" then
   local function paste()
-    return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
+    local content = vim.fn.getreg("")
+    local regtype = vim.fn.getregtype("")
+
+    -- Return empty table if clipboard is empty/invalid
+    if content == "" or content == nil then
+      return { {""}, regtype }
+    end
+
+    return { vim.fn.split(content, "\n"), regtype }
   end
   vim.g.clipboard = {
     name = "OSC 52",
