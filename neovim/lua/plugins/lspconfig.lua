@@ -9,6 +9,10 @@ return {
       end,
     })
 
+    vim.lsp.config("html", {
+      filetypes = { "html", "htmldjango", "phtml" },
+    })
+
     vim.lsp.config("lua_ls", {
       settings = {
         Lua = {
