@@ -26,6 +26,7 @@ return {
         "golangci-lint",
         "golangci_lint_ls",
         "gopls",
+        "html",
         "intelephense",
         "jsonls",
         "lemminx",
