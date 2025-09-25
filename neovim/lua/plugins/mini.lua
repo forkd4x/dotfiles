@@ -107,7 +107,7 @@ return {
         ["["] = { neigh_pattern = np },
         ["{"] = { neigh_pattern = np },
         ['"'] = { neigh_pattern = np },
-        ["'"] = { neigh_pattern = np },
+        ["'"] = { neigh_pattern = "[^\\%a][^%a%d]" },
         ["`"] = { neigh_pattern = np },
       },
     })
