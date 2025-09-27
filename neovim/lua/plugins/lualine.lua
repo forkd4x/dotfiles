@@ -6,7 +6,10 @@ local function parrot_status()
     return ""
   end
   local info = require("parrot.config").get_status_info()
-  return string.gsub(info.model, "-20[0-9]+", "")
+  local model = string.gsub(info.model, "^[^/]+/", "")
+  model = model:gsub("^claude%-", "")
+  model = model:gsub("-20[0-9]+", "")
+  return model
 end
 
 return {
