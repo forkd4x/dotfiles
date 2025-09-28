@@ -118,6 +118,15 @@ return {
         vim.keymap.set("i", "<cr>", "<cr><esc>O", { buffer = vim.api.nvim_get_current_buf() })
       end,
     })
+    -- Disable mini.pairs when inserting from visual block mode
+    vim.api.nvim_create_autocmd("ModeChanged", {
+      pattern = "\x16:i",
+      callback = function() vim.b.minipairs_disable = true end,
+    })
+    vim.api.nvim_create_autocmd("ModeChanged", {
+      pattern = "i:n",
+      callback = function() vim.b.minipairs_disable = false end,
+    })
 
     require("mini.surround").setup({
       mappings = {
