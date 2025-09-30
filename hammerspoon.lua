@@ -37,6 +37,7 @@ spoon.Rectangle:config({ margins = 7 })
 
 -- Switch apps using the right command key
 hs.loadSpoon("Rcmd")
+hs.loadSpoon("Caffeine")
 spoon.Rcmd:bindHotkeys({
   a = "Mail",
   A = function() -- Copy Mail.app message link to clipboard
@@ -53,6 +54,7 @@ spoon.Rcmd:bindHotkeys({
     hs.alert("Copied email link to clipboard")
   end,
   c = "Calendar",
+  C = function() spoon.Caffeine:toggle() end,
   d = "Things3",
   e = "Microsoft Excel",
   f = "Finder",
