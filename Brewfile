@@ -11,7 +11,6 @@ brew "uv"
 brew "zoxide"
 
 # Casks
-cask "caffeine"
 cask "chromedriver"
 cask "docker"
 cask "font-iosevka"
