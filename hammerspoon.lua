@@ -103,7 +103,7 @@ spoon.Rcmd:bindHotkeys({
         end,
         function()
           hs.timer.doAfter(0.1, function()
-            if rectangle then rectangle:right_half() end
+            spoon.Rectangle:right_half()
           end)
       end,
       0.1)
